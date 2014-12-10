@@ -38,23 +38,23 @@ useradd.json
 
 |フィールド|説明|型|必須|
 |:------------:|:----------|:---|:----------:|
-|username|ユーザ名|Text|◯|
-|email|メールアドレス|Text|◯|
-|password|パスワード|Text||
-|image|アイコン画像|File||
-|twitter_id|ツイッターID|Number||
-|twitter_access_token|ツイッターアクセストークン|Text||
-|twitter_access_token_secret|ツイッターシークレットトークン|Text||
-|facebook_id|FacebookID|Number||
-|facebook_access_token|Facebookアクセストークン|Text||
+|username|ユーザ名|text|◯|
+|email|メールアドレス|text|◯|
+|password|パスワード|text||
+|image|アイコン画像|text||
+|twitter_id|ツイッターID|int||
+|twitter_access_token|ツイッターアクセストークン|text||
+|twitter_access_token_secret|ツイッターシークレットトークン|text||
+|facebook_id|FacebookID|int||
+|facebook_access_token|Facebookアクセストークン|text||
 
 ### Responce Parameter
 
 |フィールド|説明|型|
 |:------------:|:----------|:---|
-|code|ステータスコード|Number|
-|message|メッセージ|Text|
-|token|トークン|Text
+|code|ステータスコード|int|
+|message|メッセージ|text|
+|token|トークン|text
 
 
 ### Example Request
@@ -95,23 +95,23 @@ login.json
 
 |フィールド|説明|型|必須|
 |:------------:|:----------|:---|:----------:|
-|username|ログイン用ユーザ名|Text|◯（emailといずれか）|
-|email|ログイン用メールアドレス|Text|◯（usernameといずれか）|
-|password|パスワード|Text||
-|twitter_access_token|Twitterアクセストークン|Text||
-|facebook_access_token|Facebookアクセストークン|Text||
+|username|ログイン用ユーザ名|text|◯（emailといずれか）|
+|email|ログイン用メールアドレス|text|◯（usernameといずれか）|
+|password|パスワード|text||
+|twitter_access_token|Twitterアクセストークン|text||
+|facebook_access_token|Facebookアクセストークン|text||
 
 ### Responce Parameter
 
 |フィールド|説明|型|
 |:------------:|:----------|:---|
-|code|ステータスコード|Number|
-|message|メッセージ|Text|
-|id|ユーザID|Number|
-|username|ユーザ名|Text|
-|email|メールアドレス|Text|
-|image|アイコン画像|Text|
-|moriken_auth_id|権限|Number|
+|code|ステータスコード|int|
+|message|メッセージ|text|
+|id|ユーザID|int|
+|username|ユーザ名|text|
+|email|メールアドレス|text|
+|image|アイコン画像|text|
+|moriken_auth_id|権限|int|
 
 
 ### Example Request
