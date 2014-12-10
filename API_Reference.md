@@ -123,16 +123,16 @@ sample request cord
 {
  "code": 200,
  "message": "リクエストに成功しました。",
-},
-"users":[
- {
+ "users":[
+  {
 	"id": 1,
 	"username": "username",
 	"email": "example@gmail.com",
 	"image": "ImageURL",
 	"moriken_auth_id": 1
- }
+  } 
 ]
+}
 ```
 
 ```text:Failed
