@@ -27,7 +27,7 @@ Twitter, Facebookでの登録も可能です。
 Twitter, Facebookからはユーザ名，アイコンを取得します。
 
 ### Resource URL
-useradd.json
+User.json
 
 ### Resource Information
 - Method: POST	
@@ -84,11 +84,11 @@ sample request cord
 TwitterやFacebookからもログイン可能です．
 
 ### Resource URL
-login.json
+Users.json
 
 ### Resource Information
 - Method: POST	
-- Contoroller#action: Users#login(?)
+- Contoroller#action: Users#login
 - Requires Authentication: No
 
 ### Request Parameter
