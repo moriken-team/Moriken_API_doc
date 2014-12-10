@@ -1,6 +1,6 @@
 # もりけんAPIリファレンス
 
-## GetQuizAPI・・・過去問題取得API
+## 過去問題取得API
 
 ### Summary
 過去問題を取得するAPIです。
@@ -8,8 +8,9 @@
 ### Resource URL
 getquiz.json
 
-## Resource Information
+### Resource Information
 - Method: GET
+- Contoroller#action: Problem#quiz
 - Requires Authentication: No
 
 ### Request Parameter
@@ -17,9 +18,9 @@ getquiz.json
 |フィールド|説明|型|必須|
 |:------------:|:----------|:---|:----------:|
 |user_id|ユーザID（facebook, twitter）|int|◯|
-|employ|年度|int||
-|grade|級|int||
-|category_id|カテゴリID|int||
+|employ|年度|int|◯|
+|grade|級|int|◯|
+|category_id|カテゴリID|int|◯|
 
 ### Responce Parameter
 
@@ -44,41 +45,27 @@ http://...getquiz.json?user_id=1&employ=2012&grade=3&category_id=2
 
 ### Example Responce
 
+```php
 {
-
-"response": {
-
-"employ": "2012",
-
-"grade": "3",
-
-"number": "",
-
-"type": "",
-
-"category_name": "",
-
-"subcategory_name": "",
-
-"sentence": "",
-
-"right_answer": "",
-
-"wrong_answer1": "",
-
-"wrong_answer2": "",
-
-"wrong_answer3": "",
-
-"description": ""
-
+	"response": {
+		"employ": "2012",
+		"grade": "3",
+		"number": "",
+		"type": "",
+		"category_name": "",
+		"subcategory_name": "",
+		"sentence": "",
+		"right_answer": "",
+		"wrong_answer1": "",
+		"wrong_answer2": "",
+		"wrong_answer3": "",
+		"description": ""
+	}
 }
-
-}
-
+```
 
 
-## CreateQuizAPI・・・問題作成API
+## 問題作成API
 
 ### Summary
 問題を作成するAPIです。
@@ -88,6 +75,7 @@ createquiz.json
 
 ### Resource Information
 - Method: POST
+- Contoroller#action: Problem#creat
 - Requires Authentication: No
 
 ### Request Parameter
@@ -109,9 +97,8 @@ createquiz.json
 
 |フィールド|説明|型|
 |:------------:|:----------|:---|
-|saved|問題作成に成功|text|
-|error|問題作成に失敗|text|
-|data is empty|データが送られてきていない|text|
+|code|APIの処理結果ステータスコード|text|
+|message|APIの処理結果メッセージ|text|
 
 ### Example Request（選択形式）
 
@@ -124,13 +111,27 @@ http://...create_quiz.json?user_id=1&sentence=texttexttext&right_answer=test&des
 
 ### Example Responce（登録成功時）
 
-{"response": "seved"}
+```php
+{
+	"code" : 201,
+	"message" : "作成に成功しました。"
+}
+```
 
 ### Example Responce（登録失敗時）
 
-{"response": "error"}
+```php
+{"
+	"code" : 400,
+	"message" : "未入力の項目があるか、入力内容が間違っています。"
+}
+```
 
 ### Example Responce（リクエスト失敗時）
 
-{"response": "data is empty"}
-
+```php
+{
+	"code" : 401,
+	"message" : "認証が失敗しているか、未認証の状態です。"
+}
+```
