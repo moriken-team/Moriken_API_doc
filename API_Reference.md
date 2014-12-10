@@ -14,7 +14,7 @@ getquiz.json
 
 ### Request Parameter
 
-|Parameter name|description|type|必須かどうか|
+|フィールド|説明|型|必須|
 |:------------:|:----------|:---|:----------:|
 |user_id|ユーザID（facebook, twitter）|int|◯|
 |employ|年度|int||
@@ -23,7 +23,7 @@ getquiz.json
 
 ### Responce Parameter
 
-|Parameter name|description|type|
+|フィールド|説明|型|
 |:------------:|:----------|:---|
 |employ|過去問題採用年度|int|
 |grade|過去問題採用級|int|
@@ -92,7 +92,7 @@ createquiz.json
 
 ### Request Parameter
 
-|Parameter name|description|type|必須かどうか|
+|フィールド|説明|型|必須|
 |:------------:|:----------|:---|:----------:|
 |user_id|ユーザID（facebook, twitter）|int|◯|
 |sentence|問題文|text|◯|
@@ -107,7 +107,7 @@ createquiz.json
 
 ### Responce Parameter
 
-|Parameter name|description|type|
+|フィールド|説明|型|
 |:------------:|:----------|:---|
 |saved|問題作成に成功|text|
 |error|問題作成に失敗|text|
