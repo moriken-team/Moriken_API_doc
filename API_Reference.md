@@ -6,11 +6,11 @@
 過去問題を取得するAPIです。
 
 ### Resource URL
-getquiz.json
+Problem.json
 
 ### Resource Information
 - Method: GET
-- Contoroller#action: Problem#quiz
+- Contoroller#action: Problem#getquiz
 - Requires Authentication: No
 
 ### Request Parameter
@@ -71,11 +71,11 @@ http://...getquiz.json?user_id=1&employ=2012&grade=3&category_id=2
 問題を作成するAPIです。
 
 ### Resource URL
-createquiz.json
+Probrem.json
 
 ### Resource Information
 - Method: POST
-- Contoroller#action: Problem#creat
+- Contoroller#action: Problem#creatquiz
 - Requires Authentication: No
 
 ### Request Parameter
