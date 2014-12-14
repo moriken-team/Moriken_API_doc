@@ -165,8 +165,7 @@ Problem.json
 |:------------:|:----------|:---|:----------:|
 |user_id|ユーザID（facebook, twitter）|int|◯|
 |employ|年度|int|◯|
-|grade|級|int|◯|
-|category_id|カテゴリID|int|◯|
+|type|問題取得形式（1. 1問取得 2. 5問取得 3. 全問取得）|int|◯|
 
 ### Responce Parameter
 
@@ -175,7 +174,7 @@ Problem.json
 |employ|過去問題採用年度|int|
 |grade|過去問題採用級|int|
 |number|過去問題設問番号|int|
-|type|問題形式（1.四択問題　2.記述式問題）|int|
+|type|問題形式（1. 四択問題　2. 記述式問題）|int|
 |category_name|カテゴリ名|text|
 |subcategory_name|サブカテゴリ名|txet|
 |sentence|問題文|text|
@@ -185,15 +184,22 @@ Problem.json
 |wrong_answer3|誤答選択肢3|text|
 |description|解説文|text|
 
-### Example Request
+### Example Requesc
 
-http://...getquiz.json?user_id=1&employ=2012&grade=3&category_id=2
+http://...getquiz.json?user_id=1&employ=2012&type=1
 
-### Example Responce
+###Example Request(5問取得）
+http://...getquiz.json?user_id=1&employ=2012&type=2
 
-```php
+###Example Request（全問取得）
+http://...getquiz.json?user_id=1&employ=2012&type=3
+
+### Example Responce（1問取得）
+```
 {
-	"response": {
+	code: 200,
+	message: "リクエストに成功しました。",
+	"problem": [
 		"employ": "2012",
 		"grade": "3",
 		"number": "",
@@ -206,10 +212,138 @@ http://...getquiz.json?user_id=1&employ=2012&grade=3&category_id=2
 		"wrong_answer2": "",
 		"wrong_answer3": "",
 		"description": ""
-	}
+	]
 }
 ```
 
+### Example Responce（5問取得）
+```
+{
+	code: 200,
+	message: "リクエストに成功しました。",
+	"problem": [
+		{
+			"employ": "",
+			"grade": "",
+			"number": "",
+			"type": "",
+			"category_name": "",
+			"subcategory_name": "",
+			"sentence": "",
+			"right_answer": "",
+			"wrong_answer1": "",
+			"wrong_answer2": "",
+			"wrong_answer3": "",
+			"description": ""
+		}
+		{
+			"employ": "",
+			"grade": "",
+			"number": "",
+			"type": "",
+			"category_name": "",
+			"subcategory_name": "",
+			"sentence": "",
+			"right_answer": "",
+			"wrong_answer1": "",
+			"wrong_answer2": "",
+			"wrong_answer3": "",
+			"description": ""
+		}
+		{
+			"employ": "",
+			"grade": "",
+			"number": "",
+			"type": "",
+			"category_name": "",
+			"subcategory_name": "",
+			"sentence": "",
+			"right_answer": "",
+			"wrong_answer1": "",
+			"wrong_answer2": "",
+			"wrong_answer3": "",
+			"description": ""
+		}
+		{
+			"employ": "",
+			"grade": "",
+			"number": "",
+			"type": "",
+			"category_name": "",
+			"subcategory_name": "",
+			"sentence": "",
+			"right_answer": "",
+			"wrong_answer1": "",
+			"wrong_answer2": "",
+			"wrong_answer3": "",
+			"description": ""
+		}
+		{
+			"employ": "",
+			"grade": "",
+			"number": "",
+			"type": "",
+			"category_name": "",
+			"subcategory_name": "",
+			"sentence": "",
+			"right_answer": "",
+			"wrong_answer1": "",
+			"wrong_answer2": "",
+			"wrong_answer3": "",
+			"description": ""
+		}
+	]
+}
+```
+
+### Example Responce（全問取得）
+```
+{
+	code: 200,
+	message: "リクエストに成功しました。",
+	"problem": [
+		{
+			"employ": "2012",
+			"grade": "3",
+			"number": "1",
+			"type": "",
+			"category_name": "",
+			"subcategory_name": "",
+			"sentence": "",
+			"right_answer": "",
+			"wrong_answer1": "",
+			"wrong_answer2": "",
+			"wrong_answer3": "",
+			"description": ""
+		}
+					.
+					.
+					.
+		{
+			"employ": "2012",
+			"grade": "3",
+			"number": "100",
+			"type": "",
+			"category_name": "",
+			"subcategory_name": "",
+			"sentence": "",
+			"right_answer": "",
+			"wrong_answer1": "",
+			"wrong_answer2": "",
+			"wrong_answer3": "",
+			"description": ""
+		}
+	]
+}
+```
+
+###Example Responce（リクエスト失敗時）
+```
+{
+    "code" : 401,
+    "message" : "認証が失敗しているか、未認証の状態です。"
+}
+```
 
 ## 問題作成API
 
@@ -247,17 +381,14 @@ Probrem.json
 |message|APIの処理結果メッセージ|text|
 
 ### Example Request（選択形式）
-
 http://...create_quiz.json?user_id=1&sentence=texttexttext&right_answer=test1&wrong_answer1=test2&wrong_answer2=test3&wrong_answer3=test4&description=texttexttext&category_id=2&subcategory_id=3&type=1
 
 ### Example Request（一問一答形式）
-
 http://...create_quiz.json?user_id=1&sentence=texttexttext&right_answer=test&description=texttexttext&category_id=3&subcategory_id=4&type=2
 
 
 ### Example Responce（登録成功時）
-
-```php
+```
 {
 	"code" : 201,
 	"message" : "作成に成功しました。"
@@ -265,8 +396,7 @@ http://...create_quiz.json?user_id=1&sentence=texttexttext&right_answer=test&des
 ```
 
 ### Example Responce（登録失敗時）
-
-```php
+```
 {"
 	"code" : 400,
 	"message" : "未入力の項目があるか、入力内容が間違っています。"
@@ -274,8 +404,7 @@ http://...create_quiz.json?user_id=1&sentence=texttexttext&right_answer=test&des
 ```
 
 ### Example Responce（リクエスト失敗時）
-
-```php
+```
 {
 	"code" : 401,
 	"message" : "認証が失敗しているか、未認証の状態です。"
