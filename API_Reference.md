@@ -223,7 +223,7 @@ http://...getquiz.json?user_id=1&employ=2012&type=3
 	message: "リクエストに成功しました。",
 	"problem": [
 		{
-			"employ": "",
+			"employ": "2012",
 			"grade": "",
 			"number": "",
 			"type": "",
@@ -237,7 +237,7 @@ http://...getquiz.json?user_id=1&employ=2012&type=3
 			"description": ""
 		}
 		{
-			"employ": "",
+			"employ": "2012",
 			"grade": "",
 			"number": "",
 			"type": "",
@@ -251,7 +251,7 @@ http://...getquiz.json?user_id=1&employ=2012&type=3
 			"description": ""
 		}
 		{
-			"employ": "",
+			"employ": "2012",
 			"grade": "",
 			"number": "",
 			"type": "",
@@ -265,7 +265,7 @@ http://...getquiz.json?user_id=1&employ=2012&type=3
 			"description": ""
 		}
 		{
-			"employ": "",
+			"employ": "2012",
 			"grade": "",
 			"number": "",
 			"type": "",
@@ -279,7 +279,7 @@ http://...getquiz.json?user_id=1&employ=2012&type=3
 			"description": ""
 		}
 		{
-			"employ": "",
+			"employ": "2012",
 			"grade": "",
 			"number": "",
 			"type": "",
