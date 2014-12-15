@@ -164,7 +164,7 @@ Problem.json
 
 |フィールド|説明|型|必須|
 |:------------:|:----------|:---|:----------:|
-|problem_id|問題ID|int|◯|
+|user_id|ユーザID|int|◯|
 |employ|年度|int|◯|
 |grade|級|int|◯|
 |item|問題取得形式（1. 1問取得 2. 5問取得）|int|◯|
@@ -188,10 +188,10 @@ Problem.json
 |description|解説文|text|
 
 ### Example Requesc（1問取得）
-http://...show.json?problem_id=1&employ=2012&grade=3&type=1
+http://...show.json?user_id=1&employ=2012&grade=3&type=1
 
 ###Example Request（5問取得）
-http://...randomshow.json?problem_id=1&employ=2012&grade=3&type=2
+http://...randomshow.json?user_id=1&employ=2012&grade=3&type=2
 
 ### Example Responce（1問取得）
 ```
@@ -238,7 +238,7 @@ http://...randomshow.json?problem_id=1&employ=2012&grade=3&type=2
 			"description": ""
 		},
 		{
-			"problem_id": "1",
+			"problem_id": "2",
 			"employ": "2012",
 			"grade": "3",
 			"number": "",
@@ -253,7 +253,7 @@ http://...randomshow.json?problem_id=1&employ=2012&grade=3&type=2
 			"description": ""
 		},
 		{
-			"problem_id": "1",
+			"problem_id": "3",
 			"employ": "2012",
 			"grade": "3",
 			"number": "",
@@ -268,7 +268,7 @@ http://...randomshow.json?problem_id=1&employ=2012&grade=3&type=2
 			"description": ""
 		},
 		{
-			"problem_id": "1",
+			"problem_id": "4",
 			"employ": "2012",
 			"grade": "3",
 			"number": "",
@@ -283,7 +283,7 @@ http://...randomshow.json?problem_id=1&employ=2012&grade=3&type=2
 			"description": ""
 		},
 		{
-			"problem_id": "1",
+			"problem_id": "5",
 			"employ": "2012",
 			"grade": "3",
 			"number": "",
@@ -326,7 +326,7 @@ Problem.json
 
 |フィールド|説明|型|必須|
 |:------------:|:----------|:---|:----------:|
-|problem_id|問題ID|int|◯|
+|user_id|ユーザID|int|◯|
 |employ|年度|int|◯|
 |grade|級|int|◯|
 
@@ -376,7 +376,7 @@ http://...index.json?problem_id=1&employ=2012&grade=3
 					.
 					.
 		{
-			"problem_id": "1",
+			"problem_id": "100",
 			"employ": "2012",
 			"grade": "3",
 			"number": "100",
