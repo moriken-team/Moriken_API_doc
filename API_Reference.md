@@ -149,31 +149,31 @@ sample request cord
 ## 過去問題取得API（1問 or 5問）
 
 ### Summary
-過去問題を取得するAPIです。
+- 過去問題を取得するAPIです。
+- 5問取得はランダムに取得します。
 
 ### Resource URL
 Problem.json
 
 ### Resource Information
 - Method: GET
-- Contoroller#action: Problems#show（1問取得）
-- Contoroller#action: Problems#randomshow（5問取得）
+- Contoroller#action: Problems#show
 - Requires Authentication: No
 
 ### Request Parameter
 
 |フィールド|説明|型|必須|
 |:------------:|:----------|:---|:----------:|
-|user_id|ユーザID|int|◯|
+|problem_id|問題ID|int|◯|
 |employ|年度|int|◯|
 |grade|級|int|◯|
-|type|問題取得形式（1. 1問取得 2. 5問取得）|int|◯|
+|item|問題取得形式（1. 1問取得 2. 5問取得）|int|◯|
 
 ### Responce Parameter
 
 |フィールド|説明|型|
 |:------------:|:----------|:---|
-|user_id|ユーザID|int|
+|problem_id|問題ID|int|
 |employ|過去問題採用年度|int|
 |grade|過去問題採用級|int|
 |number|過去問題設問番号|int|
@@ -188,10 +188,10 @@ Problem.json
 |description|解説文|text|
 
 ### Example Requesc（1問取得）
-http://...show.json?user_id=1&employ=2012&grade=3&type=1
+http://...show.json?problem_id=1&employ=2012&grade=3&type=1
 
 ###Example Request（5問取得）
-http://...randomshow.json?user_id=1&employ=2012&grade=3&type=2
+http://...randomshow.json?problem_id=1&employ=2012&grade=3&type=2
 
 ### Example Responce（1問取得）
 ```
@@ -199,7 +199,7 @@ http://...randomshow.json?user_id=1&employ=2012&grade=3&type=2
 	code: 200,
 	message: "リクエストに成功しました。",
 	"problem": {
-		"user_id": "1",
+		"problem_id": "1",
 		"employ": "2012",
 		"grade": "3",
 		"number": "",
@@ -223,7 +223,7 @@ http://...randomshow.json?user_id=1&employ=2012&grade=3&type=2
 	message: "リクエストに成功しました。",
 	"problem": [
 		{
-			"user_id": "1",
+			"problem_id": "1",
 			"employ": "2012",
 			"grade": "3",
 			"number": "",
@@ -238,7 +238,7 @@ http://...randomshow.json?user_id=1&employ=2012&grade=3&type=2
 			"description": ""
 		},
 		{
-			"user_id": "1",
+			"problem_id": "1",
 			"employ": "2012",
 			"grade": "3",
 			"number": "",
@@ -253,7 +253,7 @@ http://...randomshow.json?user_id=1&employ=2012&grade=3&type=2
 			"description": ""
 		},
 		{
-			"user_id": "1",
+			"problem_id": "1",
 			"employ": "2012",
 			"grade": "3",
 			"number": "",
@@ -268,7 +268,7 @@ http://...randomshow.json?user_id=1&employ=2012&grade=3&type=2
 			"description": ""
 		},
 		{
-			"user_id": "1",
+			"problem_id": "1",
 			"employ": "2012",
 			"grade": "3",
 			"number": "",
@@ -283,7 +283,7 @@ http://...randomshow.json?user_id=1&employ=2012&grade=3&type=2
 			"description": ""
 		},
 		{
-			"user_id": "1",
+			"problem_id": "1",
 			"employ": "2012",
 			"grade": "3",
 			"number": "",
@@ -326,7 +326,7 @@ Problem.json
 
 |フィールド|説明|型|必須|
 |:------------:|:----------|:---|:----------:|
-|user_id|ユーザID|int|◯|
+|problem_id|問題ID|int|◯|
 |employ|年度|int|◯|
 |grade|級|int|◯|
 
@@ -334,7 +334,7 @@ Problem.json
 
 |フィールド|説明|型|
 |:------------:|:----------|:---|
-|user_id|ユーザID|int|
+|problem_id|問題ID|int|
 |employ|過去問題採用年度|int|
 |grade|過去問題採用級|int|
 |number|過去問題設問番号|int|
@@ -349,7 +349,7 @@ Problem.json
 |description|解説文|text|
 
 ###Example Request
-http://...index.json?user_id=1&employ=2012&grade=3
+http://...index.json?problem_id=1&employ=2012&grade=3
 
 ### Example Responce
 ```
@@ -358,7 +358,7 @@ http://...index.json?user_id=1&employ=2012&grade=3
 	message: "リクエストに成功しました。",
 	"problem": [
 		{
-			"user_id": "1",
+			"problem_id": "1",
 			"employ": "2012",
 			"grade": "3",
 			"number": "1",
@@ -376,7 +376,7 @@ http://...index.json?user_id=1&employ=2012&grade=3
 					.
 					.
 		{
-			"user_id": "1",
+			"problem_id": "1",
 			"employ": "2012",
 			"grade": "3",
 			"number": "100",
