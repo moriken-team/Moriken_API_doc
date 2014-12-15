@@ -188,10 +188,10 @@ Problem.json
 |description|解説文|text|
 
 ### Example Requesc（1問取得）
-http://...show.json?user_id=1&employ=2012&grade=3&type=1
+http://...show.json?user_id=1&employ=2012&grade=3&item=1
 
 ###Example Request（5問取得）
-http://...randomshow.json?user_id=1&employ=2012&grade=3&type=2
+http://...randomshow.json?user_id=1&employ=2012&grade=3&item=2
 
 ### Example Responce（1問取得）
 ```
