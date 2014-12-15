@@ -146,7 +146,7 @@ sample request cord
 }
 ```
 
-## 過去問題取得API
+## 過去問題取得API（1問 or 5問）
 
 ### Summary
 過去問題を取得するAPIです。
@@ -156,21 +156,24 @@ Problem.json
 
 ### Resource Information
 - Method: GET
-- Contoroller#action: Problem#getquiz
+- Contoroller#action: Problems#show（1問取得）
+- Contoroller#action: Problems#randomshow（5問取得）
 - Requires Authentication: No
 
 ### Request Parameter
 
 |フィールド|説明|型|必須|
 |:------------:|:----------|:---|:----------:|
-|user_id|ユーザID（facebook, twitter）|int|◯|
+|user_id|ユーザID|int|◯|
 |employ|年度|int|◯|
-|type|問題取得形式（1. 1問取得 2. 5問取得 3. 全問取得）|int|◯|
+|grade|級|int|◯|
+|type|問題取得形式（1. 1問取得 2. 5問取得）|int|◯|
 
 ### Responce Parameter
 
 |フィールド|説明|型|
 |:------------:|:----------|:---|
+|user_id|ユーザID|int|
 |employ|過去問題採用年度|int|
 |grade|過去問題採用級|int|
 |number|過去問題設問番号|int|
@@ -185,20 +188,18 @@ Problem.json
 |description|解説文|text|
 
 ### Example Requesc（1問取得）
-http://...getquiz.json?user_id=1&employ=2012&type=1
+http://...show.json?user_id=1&employ=2012&grade=3&type=1
 
 ###Example Request（5問取得）
-http://...getquiz.json?user_id=1&employ=2012&type=2
-
-###Example Request（全問取得）
-http://...getquiz.json?user_id=1&employ=2012&type=3
+http://...randomshow.json?user_id=1&employ=2012&grade=3&type=2
 
 ### Example Responce（1問取得）
 ```
 {
 	code: 200,
 	message: "リクエストに成功しました。",
-	"problem": [
+	"problem": {
+		"user_id": "1",
 		"employ": "2012",
 		"grade": "3",
 		"number": "",
@@ -211,7 +212,7 @@ http://...getquiz.json?user_id=1&employ=2012&type=3
 		"wrong_answer2": "",
 		"wrong_answer3": "",
 		"description": ""
-	]
+	}
 }
 ```
 
@@ -222,8 +223,9 @@ http://...getquiz.json?user_id=1&employ=2012&type=3
 	message: "リクエストに成功しました。",
 	"problem": [
 		{
+			"user_id": "1",
 			"employ": "2012",
-			"grade": "",
+			"grade": "3",
 			"number": "",
 			"type": "",
 			"category_name": "",
@@ -234,10 +236,11 @@ http://...getquiz.json?user_id=1&employ=2012&type=3
 			"wrong_answer2": "",
 			"wrong_answer3": "",
 			"description": ""
-		}
+		},
 		{
+			"user_id": "1",
 			"employ": "2012",
-			"grade": "",
+			"grade": "3",
 			"number": "",
 			"type": "",
 			"category_name": "",
@@ -248,10 +251,11 @@ http://...getquiz.json?user_id=1&employ=2012&type=3
 			"wrong_answer2": "",
 			"wrong_answer3": "",
 			"description": ""
-		}
+		},
 		{
+			"user_id": "1",
 			"employ": "2012",
-			"grade": "",
+			"grade": "3",
 			"number": "",
 			"type": "",
 			"category_name": "",
@@ -262,10 +266,11 @@ http://...getquiz.json?user_id=1&employ=2012&type=3
 			"wrong_answer2": "",
 			"wrong_answer3": "",
 			"description": ""
-		}
+		},
 		{
+			"user_id": "1",
 			"employ": "2012",
-			"grade": "",
+			"grade": "3",
 			"number": "",
 			"type": "",
 			"category_name": "",
@@ -276,10 +281,11 @@ http://...getquiz.json?user_id=1&employ=2012&type=3
 			"wrong_answer2": "",
 			"wrong_answer3": "",
 			"description": ""
-		}
+		},
 		{
+			"user_id": "1",
 			"employ": "2012",
-			"grade": "",
+			"grade": "3",
 			"number": "",
 			"type": "",
 			"category_name": "",
@@ -295,13 +301,64 @@ http://...getquiz.json?user_id=1&employ=2012&type=3
 }
 ```
 
-### Example Responce（全問取得）
+###Example Responce（リクエスト失敗時）
+```
+{
+    "code" : 401,
+    "message" : "認証が失敗しているか、未認証の状態です。"
+}
+```
+
+## 過去問題取得API（全部）
+
+### Summary
+過去問題を取得するAPIです。
+
+### Resource URL
+Problem.json
+
+### Resource Information
+- Method: GET
+- Contoroller#action: Problems#index
+- Requires Authentication: No
+
+### Request Parameter
+
+|フィールド|説明|型|必須|
+|:------------:|:----------|:---|:----------:|
+|user_id|ユーザID|int|◯|
+|employ|年度|int|◯|
+|grade|級|int|◯|
+
+### Responce Parameter
+
+|フィールド|説明|型|
+|:------------:|:----------|:---|
+|user_id|ユーザID|int|
+|employ|過去問題採用年度|int|
+|grade|過去問題採用級|int|
+|number|過去問題設問番号|int|
+|type|問題形式（1. 四択問題　2. 記述式問題）|int|
+|category_name|カテゴリ名|text|
+|subcategory_name|サブカテゴリ名|txet|
+|sentence|問題文|text|
+|right_answer|正解選択肢or正解文字列|text|
+|wrong_answer1|誤答選択肢1|text|
+|wrong_answer2|誤答選択肢2|text|
+|wrong_answer3|誤答選択肢3|text|
+|description|解説文|text|
+
+###Example Request
+http://...index.json?user_id=1&employ=2012&grade=3
+
+### Example Responce
 ```
 {
 	code: 200,
 	message: "リクエストに成功しました。",
 	"problem": [
 		{
+			"user_id": "1",
 			"employ": "2012",
 			"grade": "3",
 			"number": "1",
@@ -314,11 +371,12 @@ http://...getquiz.json?user_id=1&employ=2012&type=3
 			"wrong_answer2": "",
 			"wrong_answer3": "",
 			"description": ""
-		}
+		},
 					.
 					.
 					.
 		{
+			"user_id": "1",
 			"employ": "2012",
 			"grade": "3",
 			"number": "100",
