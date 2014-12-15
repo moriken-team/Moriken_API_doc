@@ -184,11 +184,10 @@ Problem.json
 |wrong_answer3|誤答選択肢3|text|
 |description|解説文|text|
 
-### Example Requesc
-
+### Example Requesc（1問取得）
 http://...getquiz.json?user_id=1&employ=2012&type=1
 
-###Example Request(5問取得）
+###Example Request（5問取得）
 http://...getquiz.json?user_id=1&employ=2012&type=2
 
 ###Example Request（全問取得）
