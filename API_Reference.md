@@ -167,7 +167,7 @@ Problem.json
 |user_id|ユーザID|int|◯|
 |employ|年度|int|◯|
 |grade|級|int|◯|
-|item|問題取得数（1. 1問 2. 5問）|int|◯|
+|item|問題取得数|int|◯|
 
 ### Responce Parameter
 
