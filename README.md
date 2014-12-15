@@ -9,4 +9,5 @@
 - *2014/12/15* Ver 1.0 公開
 
 ## 目次
-[共通仕様](API_Reference.md#共通仕様)
+- [共通仕様](API_Reference.md#共通仕様)
+- [ユーザ登録](API_Reference.md#ユーザ登録API)
