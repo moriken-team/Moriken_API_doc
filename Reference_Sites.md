@@ -7,6 +7,7 @@ API設計をする上で参考になるサイトをまとめます。
 [Cacoo API リファレンス](https://cacoo.com/lang/ja/api_print)
 
 ここ一番見やすいと思う。各言語のリファレンスがあって便利
+
 [WebPay APIリファレンス](https://webpay.jp/docs/api/curl)
 
 ## RESTfulについての説明
@@ -23,4 +24,5 @@ API設計をする上で参考になるサイトをまとめます。
 [CakePHPでのAPI実装について | be-hase.com](http://be-hase.com/php/478/)
 
 Viewについて
+
 [JSONとXMLビュー &mdash; CakePHP Cookbook 2.x ドキュメント](http://book.cakephp.org/2.0/ja/views/json-and-xml-views.html)
