@@ -16,4 +16,5 @@ API設計をする上で参考になるサイトをまとめます。
 
 ## CakePHPでのAPI作成例
 [REST &mdash; CakePHP Cookbook 2.x ドキュメント](http://book.cakephp.org/2.0/ja/development/rest.html)
+
 [CakePHPでのAPI実装について | be-hase.com](http://be-hase.com/php/478/)
