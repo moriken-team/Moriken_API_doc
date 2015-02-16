@@ -9,7 +9,7 @@
 - *2014/12/15* Ver 1.0 公開
 
 ## 目次
-- [共通仕様](API_Reference.md#Common Specification)
+- [共通仕様](API_Reference.md#Common-Specification)
 - [ユーザ登録](API_Reference.md#ユーザ登録API)
 - [ログイン](API_Reference.md#ログイン)
 - [過去問題取得（数指定）](API_Reference.md#過去問題取得API（1問 or 5問）)
