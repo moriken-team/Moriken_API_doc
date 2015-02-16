@@ -402,7 +402,7 @@ http://...index.json?problem_id=1&employ=2012&grade=3
 }
 ```
 
-## Making Questoin API
+## Making Question API
 
 ### Summary
 問題を作成するAPIです。
@@ -428,7 +428,7 @@ Probrem.json
 |description|解説文|text|◯|
 |category_id|カテゴリid|int|◯|
 |subcategory_id|サブカテゴリid|int|◯|
-|type|問題形式（1.四択問題　2.記述式問題）|int|◯|
+|type|問題形式（1.四択問題 2.記述式問題）|int|◯|
 
 ### Responce Parameter
 
@@ -468,7 +468,7 @@ http://...create_quiz.json?user_id=1&sentence=texttexttext&right_answer=test&des
 }
 ```
 
-## 問題回答結果記録API
+## Add Answer History API
 
 ### Summary
 問題解答結果を記録(answer_historisへの記録)をするAPI

@@ -15,4 +15,4 @@
 - [過去問題取得（数指定）](API_Reference.md#get-exist-questions-api)
 - [過去問題取得（全部）](API_Reference.md#get-all-exist-questions-api)
 - [問題作成](API_Reference.md#making-question-api)
-- [問題解答結果記録](API_Reference.md#問題回答結果記録api)
+- [問題解答結果記録](API_Reference.md#add-answer-history-api)
