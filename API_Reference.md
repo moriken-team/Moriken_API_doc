@@ -1,6 +1,6 @@
 # もりけんAPIリファレンス
 
-## 共通仕様
+## Common Specification（共通仕様）
 ### Responce Format
 JSON
 
