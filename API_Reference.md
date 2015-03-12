@@ -1,6 +1,6 @@
 # もりけんAPIリファレンス
 
-## 共通仕様
+## Common Specification
 ### Responce Format
 JSON
 
@@ -18,7 +18,7 @@ JSON
 |500（InternalServerError）|サーバエラーです。|
 |503（ServiceUnavailable）|メンテナンス中か、サーバがダウンしています。|
 
-## ユーザ登録API
+## UserAdd API
 
 ### Summary
 ユーザの登録APIです。
@@ -78,7 +78,7 @@ sample request cord
 }
 ```
 
-## ログインAPI
+## Login API
 ### Summary
 ユーザのログインAPIです。
 TwitterやFacebookからもログイン可能です．
@@ -146,7 +146,7 @@ sample request cord
 }
 ```
 
-## 過去問題取得API（1問 or 5問）
+## Get Exist Questions API
 
 ### Summary
 - 過去問題を取得するAPIです。
@@ -177,7 +177,7 @@ Problem.json
 |employ|過去問題採用年度|int|
 |grade|過去問題採用級|int|
 |number|過去問題設問番号|int|
-|type|問題形式（1. 四択問題　2. 記述式問題）|int|
+|type|問題形式（1. 四択問題 2. 記述式問題）|int|
 |category_name|カテゴリ名|text|
 |subcategory_name|サブカテゴリ名|txet|
 |sentence|問題文|text|
@@ -309,7 +309,7 @@ http://...randomshow.json?user_id=1&employ=2012&grade=3&item=2
 }
 ```
 
-## 過去問題取得API（全部）
+## Get All Exist Questions API
 
 ### Summary
 過去問題を取得するAPIです。
@@ -402,7 +402,7 @@ http://...index.json?problem_id=1&employ=2012&grade=3
 }
 ```
 
-## 問題作成API
+## Making Question API
 
 ### Summary
 問題を作成するAPIです。
@@ -428,7 +428,7 @@ Probrem.json
 |description|解説文|text|◯|
 |category_id|カテゴリid|int|◯|
 |subcategory_id|サブカテゴリid|int|◯|
-|type|問題形式（1.四択問題　2.記述式問題）|int|◯|
+|type|問題形式（1.四択問題 2.記述式問題）|int|◯|
 
 ### Responce Parameter
 
@@ -468,7 +468,7 @@ http://...create_quiz.json?user_id=1&sentence=texttexttext&right_answer=test&des
 }
 ```
 
-## 問題回答結果記録API
+## Add Answer History API
 
 ### Summary
 問題解答結果を記録(answer_historisへの記録)をするAPI
