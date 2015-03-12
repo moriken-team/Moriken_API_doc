@@ -474,11 +474,11 @@ http://...create_quiz.json?user_id=1&sentence=texttexttext&right_answer=test&des
 問題解答結果を記録(answer_historisへの記録)をするAPI
 
 ### Resource URL
-problems.json
+create.json
 
 ### Resource Information
 - Method: POST
-- Contoroller#action : Problem#create
+- Contoroller#action : AnswerHistories#create
 
 |フィールド|説明|型|必須|
 |:------------:|:----------|:---|:----------:|
@@ -503,18 +503,43 @@ problems.json
 
 
 ### Example Request
-http://~/problems.json
+http://moriken_test.com/LK_API/answerHistories/create.json<br />
 post_data:kentei_id=1&user_id=10&problem_id=5&answer_flag=1
 
 ### Example Responce
 ```
 {
-    "code" : 201,
-    "message" : "作成に成功しました",
-    "kentei_id" : 1,
-    "user_id" : 10,
-    "problem_id" : 5,
-    "answer_flag" : 1,
-    "answer_text" : Null
+    "meta": {
+        "method": "POST",
+            "url": "/LK_API/answerHistories/create.json"
+    },
+    "response": {
+        "code": 201,
+        "message": "作成に成功しました。",
+        "AnswerHistory": {
+            "answer_flag": "1",
+            "kentei_id": "1",
+            "problem_id": "5",
+            "user_id": "10"
+        }
+    }
+}
+```
+
+```
+{
+    "meta": {
+        "method": "POST",
+        "url": "/LK_API/answerHistories/create.json"
+    },
+    "error": {
+        "code": "400",
+        "message": "Validation Error",
+        "validation": {
+            "AnswerHistory": {
+                "kentei_id": "kentei_idを設定してください"
+            }
+        }
+    }
 }
 ```
