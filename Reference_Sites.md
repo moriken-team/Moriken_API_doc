@@ -5,7 +5,7 @@ API設計をする上で参考になるサイトをまとめます。
 [REST APIs | Twitter Developers](https://dev.twitter.com/rest/public)
 
 [Cacoo API リファレンス](https://cacoo.com/lang/ja/api_print)
-[[PHP] CAKEPHPでAPIを作る](http://offsidenow.phpapps.jp/archives/360)
+
 [ざっくりCakePHP2.×入門(復習用にどうぞ)](http://qiita.com/kimriwon/items/2ef6f81e11709f1a75bd)
 
 [WebPay APIリファレンス](https://webpay.jp/docs/api/curl) : ここ一番見やすいと思う。各言語のリファレンスがあって便利

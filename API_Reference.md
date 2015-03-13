@@ -2,7 +2,66 @@
 
 ## Common Specification
 ### Responce Format
-JSON
+
+- 全てのAPIはデータをJSON形式で返します。
+- 全てのAPIにおいて、メタ情報（URL, method）を返します。
+- レスポンスには後述するステータスコードとそれに対応するメッセージが付与されます。
+- エラーの場合はデータがないときなどのエラーと、バリデーションエラーの2種類のレスポンスがあります。
+- Success以外の場合はメッセージ内容とコード以外は全て同じフォーマットになります。(そのため各APIのReferenceのExample ResponseにはSuccessのみ示します)
+
+#### Success
+
+```
+{
+    "meta": {
+        "url": "url",
+        "method": "method"
+    },
+    "response": {
+        "code": 200,
+        "message": "message",
+        "response": array()
+    }
+}
+```
+
+#### Error
+
+```
+{
+    "meta": {
+        "url": "url",
+        "method": "method"
+    },
+    "error": {
+        "code": (int)code,
+        "message": "message",
+    }
+}
+```
+
+#### Validation Error
+
+```
+{
+    "meta": {
+        "url": "url",
+        "method": "method"
+    },
+    "error": {
+        "code": (int)code,
+        "message": "Validation Error",
+        "validation": {
+            "ModelName": {
+                "columName": "message",
+                        .
+                        .
+                        .
+            }
+        }
+    }
+}
+```
 
 ### Status Code
 
@@ -26,11 +85,11 @@ Twitter, Facebookでの登録も可能です。
 Twitter, Facebookからはユーザ名，アイコンを取得します。
 
 ### Resource URL
-User.json
+http://sakumon.jp/app/LK_API/users.json
 
 ### Resource Information
 - Method: POST	
-- Contoroller#action: Users#create
+- Contoroller#action: users#add
 - Requires Authentication: No
 
 ### Request Parameter
@@ -39,16 +98,13 @@ User.json
 |:------------:|:----------|:---|:----------:|
 |username|ユーザ名|text|◯|
 |email|メールアドレス|text|◯|
-|password|パスワード|text||
+|password|パスワード|text|◯SNS認証以外は必須)|
 |image|アイコン画像|text||
 |twitter_id|ツイッターID|int||
 |twitter_access_token|ツイッターアクセストークン|text||
 |twitter_access_token_secret|ツイッターシークレットトークン|text||
 |facebook_id|FacebookID|int||
 |facebook_access_token|Facebookアクセストークン|text||
-|code|ステータスコード|int|
-|message|メッセージ|text|
-|token|トークン|text
 
 ### Responce Parameter
 
@@ -56,25 +112,61 @@ User.json
 |:------------:|:----------|:---|
 |code|ステータスコード|int|
 |message|メッセージ|text|
-|token|トークン|text
+|id|ユーザID|int|
+|username|ユーザ名|text|
+|password|パスワード|text|
+|email|メールアドレス|text|
+|image|ファイルパス|text|
+|twitter_id|TwitterのID|int|
+|twitter_access_token|Twitterのアクセストークン|text|
+|twitter_access_token_secret|Twitterのシークレットトークン|text|
+|facebook_id|FacebookのID|int|
+|facebook_access_token|Facebookのアクセストークン|text|
+|token|ユーザのトークン|text|
+|created|ユーザ作成日|datetime|
+|modified|ユーザ編集日|datetime|
 
 ### Example Request
-sample request cord
+POST<br />
+http://sakumon.jp/app/LK_API/users.json
 
-### Example Responce
-
-```Text:Success
-{
- "code": 200,
- "message": "リクエストに成功しました。",
- "token": "examplehashtoken"
-}
+```
+array(
+    'User' => array(
+        'username' => 'test',
+        'email' => 'test@test.com',
+        'password' => 'password'
+    )
+)
 ```
 
-```text:Failed
+### Example Response
+
+```
 {
- "code": 400,
- "message": "未入力の項目があるか、入力内容が間違っています。"
+    "meta": {
+        "url": "/LK_API/users.json",
+        "method": "POST"
+    },
+    "response": {
+        "code": 201,
+        "message": "ユーザ登録に成功しました。",
+        "response": {
+            "id": "1215",
+            "username": "apiss",
+            "password": "apis",
+            "email": "api@api.com",
+            "image": "filepath.jpg",
+            "twitter_id": "twitter_id",
+            "twitter_access_token": "token",
+            "twitter_access_token_secret": "token",
+            "facebook_id": "id",
+            "facebook_access_token": "token",
+            "token": "b0rajjdslkajdsksdkjdlkdjsakljdsl;j",
+            "created": datetime,
+            "modified": datetime
+        }
+    }
 }
 ```
 
@@ -84,11 +176,11 @@ sample request cord
 TwitterやFacebookからもログイン可能です．
 
 ### Resource URL
-Users.json
+logins.json
 
 ### Resource Information
 - Method: POST	
-- Contoroller#action: Users#login
+- Contoroller#action: logins#add
 - Requires Authentication: No
 
 ### Request Parameter
@@ -97,16 +189,9 @@ Users.json
 |:------------:|:----------|:---|:----------:|	
 |username|ログイン用ユーザ名|text|◯（emailといずれか）|
 |email|ログイン用メールアドレス|text|◯（usernameといずれか）|
-|password|パスワード|text||
+|password|パスワード|text|◯(SNS認証以外は必須)|
 |twitter_access_token|Twitterアクセストークン|text||
 |facebook_access_token|Facebookアクセストークン|text||
-|code|ステータスコード|int|
-|message|メッセージ|text|
-|id|ユーザID|int|
-|username|ユーザ名|text|
-|email|メールアドレス|text|
-|image|アイコン画像|text|
-|moriken_auth_id|権限|int|
 
 ### Responce Parameter
 
@@ -117,32 +202,56 @@ Users.json
 |id|ユーザID|int|
 |username|ユーザ名|text|
 |email|メールアドレス|text|
-|image|アイコン画像|text|
-|moriken_auth_id|権限|int|
+|image|ファイルパス|text|
+|twitter_id|TwitterのID|int|
+|twitter_access_token|Twitterのアクセストークン|text|
+|twitter_access_token_secret|Twitterのシークレットトークン|text|
+|facebook_id|FacebookのID|int|
+|facebook_access_token|Facebookのアクセストークン|text|
+|token|ユーザのトークン|text|
+|created|ユーザ作成日|datetime|
+|modified|ユーザ編集日|datetime|
 
 ### Example Request
-sample request cord
+POST<br />
+http://sakumon.jp/app/LK_API/logins.json
+
+```
+array(
+    'User' => array(
+        'username' => 'test',
+        'password' => 'password'
+    )
+)
+```
 
 ### Example Responce
 
-```text:Success
-{
- "code": 200,
- "message": "リクエストに成功しました。",
- "users": {
-	"id": 1,
-	"username": "username",
-	"email": "example@gmail.com",
-	"image": "ImageURL",
-	"moriken_auth_id": 1
-  } 
-}
 ```
-
-```text:Failed
 {
- "code": 400,
- "message": "未入力の項目があるか、入力内容が間違っています。"
+    "meta": {
+        "url": "/LK_API/users.json",
+        "method": "POST"
+    },
+    "response": {
+        "code": 201,
+        "message": "ログインに成功しました。",
+        "response": {
+            "id": "1215",
+            "username": "apiss",
+            "password": "apis",
+            "email": "api@api.com",
+            "image": "filepath.jpg",
+            "twitter_id": "twitter_id",
+            "twitter_access_token": "token",
+            "twitter_access_token_secret": "token",
+            "facebook_id": "id",
+            "facebook_access_token": "token",
+            "token": "b0rajjdslkajdsksdkjdlkdjsakljdsl;j",
+            "created": datetime,
+            "modified": datetime
+        }
+    }
 }
 ```
 
