@@ -921,3 +921,187 @@ post_data:kentei_id=1
     }
 }
 ```
+
+## Add Evaluate Comment API
+
+### Summary
+問題の評価内容を登録するAPI
+
+### Resource URL
+add.json
+
+### Resource Information
+- Method: POST
+- Contoroller#action : EvaluateComments#add
+
+|フィールド|説明|型|必須|
+|:------------:|:----------|:---|:----------:|
+|evaluate_item_id|評価対象の項目ID|int|◯|
+|problem_id|評価対象の問題ID|int|◯|
+|user_id|評価ユーザID|int|◯|
+|evaluate_comment|評価コメント(評価者)|text|◯|
+
+
+### Responce Parameter
+
+|フィールド|説明|型|
+|:------------:|:----------|:---|
+|code|APIの処理結果ステータスコード|int|
+|message|APIの処理結果メッセージ|text|
+|evaluate_item_id|評価対象の項目ID|int|
+|problem_id|評価対象の問題ID|int|
+|user_id|評価ユーザID|int|
+|evaluate_comment|評価コメント(評価者)|text|
+
+
+### Example Request(success)
+http://sakumon.jp/LK_API/evaluateComments/add.json<br />
+post_data:evaluate_item_id=1&problem_id=1&user_id=1&evaluate_comment=いのうえ
+
+### Example Responce
+```
+{
+    "meta": {
+        "method": "POST",
+        "url": "/LK_API/evaluateComments/add.json"
+    },
+    "response": {
+        "code": 201,
+        "message": "作成に成功しました。",
+        "EvaluateComment": {
+            "evaluate_item_id": "1",
+            "problem_id": "1",
+            "user_id": "1"
+            "evaluate_comment": "いのうえ",
+        }
+    }
+}
+```
+
+### Example Request(error)
+http://sakumon.jp/LK_API/evaluateComments/add.json<br />
+post_data:evaluate_item_id=1&problem_id=1&user_id=いのうえ&evaluate_comment=test!
+
+### Example Responce
+```
+{
+    "meta": {
+        "method": "POST",
+        "url": "/LK_API/evaluateComments/add.json"
+    },
+    "error": {
+        "code": "400",
+        "message": "Validation Error",
+        "validation": {
+            "EvaluateComment": {
+                "user_id": "正しいuser_id(int)を設定してください"
+            }
+        }
+    }
+}
+```
+
+
+## Index Evaluate Comment API
+
+### Summary
+問題の評価結果を取得するAPI
+
+### Resource URL
+index.json
+
+### Resource Information
+- Method: GET
+- Contoroller#action : EvaluateComments#index
+
+|フィールド|説明|型|必須|
+|:------------:|:----------|:---|:----------:|
+|problem_id|評価対象の問題ID|int|problem_id,user_idのいずれか一つ以上が◯|
+|user_id|評価ユーザID|int|problem_id,user_idのいずれか一つ以上が◯|
+
+
+### Responce Parameter
+
+|フィールド|説明|型|
+|:------------:|:----------|:---|
+|code|APIの処理結果ステータスコード|int|
+|message|APIの処理結果メッセージ|text|
+|evaluate_item_id|評価対象の項目ID|int|
+|problem_id|評価対象の問題ID|int|
+|user_id|評価ユーザID|int|
+|evaluate_comment|評価コメント(評価者)|text|
+|confirm_comment|確認コメント(作問者)|text|
+|confirm_flag|作問者の確認フラグ(1:未確認,2:容認,3:否認)|int|
+|created|評価登録日|datetime|
+
+
+### Example Request(success)
+http://sakumon.jp/LK_API/evaluateComments/index.json<br />
+post_data:problem_id=1&user_id=1
+
+### Example Responce
+```
+{
+    "meta": {
+        "method": "GET",
+        "url": "/LK_API/evaluateComments/index.json"
+    },
+    "response": {
+        "code": 200,
+        "message": "リクエストの作成に成功しました。",
+        "0": {
+            "EvaluateComment": {
+                "id": "1",
+                "evaluate_item_id": "1",
+                "problem_id": "1",
+                "user_id": "1"
+                "evaluate_comment": "test!",
+                "confirm_comment": "",
+                "confirm_flag": "1",
+                "created": "2015-03-16 23:57:16",
+            }
+        },
+
+        ・
+        ・
+        ・
+
+        "3": {
+            "EvaluateComment": {
+                "id": "1",
+                "evaluate_item_id": "1",
+                "problem_id": "1",
+                "user_id": "1"
+                "evaluate_comment": "test!2",
+                "confirm_comment": "",
+                "confirm_flag": "1",
+                "created": "2015-03-17 23:57:16",
+            }
+        }
+    }
+}
+```
+
+
+### Example Request(error)
+http://sakumon.jp/LK_API/evaluateComments/index.json<br />
+post_data:problem_id=1&user_id=test
+
+### Example Responce
+```
+{
+    "meta": {
+        "method": "GET",
+        "url": "/LK_API/evaluateComments/index.json"
+    },
+    "error": {
+        "code": "400",
+        "message": "Validation Error",
+        "validation": {
+            "EvaluateComment": {
+                "user_id": "正しいuser_id(int)を設定してください"
+            }
+        }
+    }
+}
+```
