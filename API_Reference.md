@@ -254,7 +254,7 @@ array(
 }
 ```
 
-## Get Exist Questions API
+## Index Problems API
 
 ### Summary
 - 過去問題を取得するAPIです。
@@ -335,7 +335,7 @@ post_data:kentei_id=1&employ=2012&grade=3&category_id=1&item=1
     "response": {
         "code": 200,
         "message": "リクエストに成功しました。",
-        "0": [
+        "Problems": [
             {
                 "Problem": {
                     "id": "1384",
@@ -389,7 +389,7 @@ post_data:kentei_id=1&employ=2012&grade=3&category_id=1&item=5
     "response": {
         "code": 200,
         "message": "リクエストに成功しました。",
-        "0": [
+        "Problems": [
             {
                 "Problem": {
                     "id": "1384",
@@ -423,14 +423,12 @@ post_data:kentei_id=1&employ=2012&grade=3&category_id=1&item=5
                     "name": "盛岡の文化",
                     "created": "2015-02-22 17:02:46"
                 }
-            }
-        ],
+            },
 
         ・
         ・
         ・
 
-        "4": [
             {
                 "Problem": {
                     "id": "1460",
@@ -484,7 +482,7 @@ post_data:kentei_id=1&employ=2012&grade=3&item=100
     "response": {
         "code": 200,
         "message": "リクエストに成功しました。",
-        "0": [
+        "Problems": [
             {
                 "Problem": {
                     "id": "1379",
@@ -519,13 +517,11 @@ post_data:kentei_id=1&employ=2012&grade=3&item=100
                     "created": "2015-02-22 17:02:46"
                 }
             }
-        ],
 
         ・
         ・
         ・
 
-        "99": [
             {
                 "Problem": {
                     "id": "1475",
@@ -799,31 +795,35 @@ post_data:kentei_id=1&user_id=10
     "response": {
         "code": 200,
         "message": "リクエストに成功しました。",
-        "0": {
-            "AnswerHistory": {
-                "id": "134979",
-                "kentei_id": "1",
-                "user_id": "10",
-                "problem_id": "5",
-                "answer_flag": "1",
-                "answer_text": null,
-                "created": "2015-02-07 21:56:57"
+        "AnswerHistories": [
+            {
+                "AnswerHistory": {
+                    "id": "134979",
+                    "kentei_id": "1",
+                    "user_id": "10",
+                    "problem_id": "5",
+                    "answer_flag": "1",
+                    "answer_text": null,
+                    "created": "2015-02-07 21:56:57"
+                }
+            },
+            
+            ・
+            ・
+            ・
+
+            {
+                "AnswerHistory": {
+                    "id": "134980",
+                    "kentei_id": "1",
+                    "user_id": "10",
+                    "problem_id": "5",
+                    "answer_flag": "1",
+                    "answer_text": null,
+                    "created": "2015-02-07 21:57:20"
+                }
             }
-        },
-        "1": {
-            "AnswerHistory": {
-                "id": "134980",
-                "kentei_id": "1",
-                "user_id": "10",
-                "problem_id": "5",
-                "answer_flag": "1",
-                "answer_text": null,
-                "created": "2015-02-07 21:57:20"
-            }
-        },
-        ・
-        ・
-        ・
+        ]
     }
 }
 ```
@@ -931,35 +931,37 @@ post_data:problem_id=1&user_id=1
     "response": {
         "code": 200,
         "message": "リクエストの作成に成功しました。",
-        "0": {
-            "EvaluateComment": {
-                "id": "1",
-                "evaluate_item_id": "1",
-                "problem_id": "1",
-                "user_id": "1"
-                "evaluate_comment": "test!",
-                "confirm_comment": "",
-                "confirm_flag": "1",
-                "created": "2015-03-16 23:57:16",
-            }
-        },
+        "EvaluateComments": [
+            {
+                "EvaluateComment": {
+                    "id": "1",
+                    "evaluate_item_id": "1",
+                    "problem_id": "1",
+                    "user_id": "1"
+                    "evaluate_comment": "test!",
+                    "confirm_comment": "",
+                    "confirm_flag": "1",
+                    "created": "2015-03-16 23:57:16",
+                }
+            },
 
-        ・
-        ・
-        ・
+            ・
+            ・
+            ・
 
-        "3": {
-            "EvaluateComment": {
-                "id": "1",
-                "evaluate_item_id": "1",
-                "problem_id": "1",
-                "user_id": "1"
-                "evaluate_comment": "test!2",
-                "confirm_comment": "",
-                "confirm_flag": "1",
-                "created": "2015-03-17 23:57:16",
+            {
+                "EvaluateComment": {
+                    "id": "1",
+                    "evaluate_item_id": "1",
+                    "problem_id": "1",
+                    "user_id": "1"
+                    "evaluate_comment": "test!2",
+                    "confirm_comment": "",
+                    "confirm_flag": "1",
+                    "created": "2015-03-17 23:57:16",
+                }
             }
-        }
+        ]
     }
 }
 ```
@@ -1005,6 +1007,8 @@ post_data:id=1(idは↑のurlのパラメーターとして送る),confirm_comme
         "url": "/LK_API/evaluateComments/edit/1.json"
     },
     "response": {
+        "code": 201,
+        "message": "作成に成功しました。",
         "confirm_comment": "tesComment",
         "confirm_flag": "2"
     }
