@@ -20,7 +20,7 @@
     "response": {
         "code": 200,
         "message": "message",
-        "response": array()
+        "modelname(s)": array()
     }
 }
 ```
@@ -151,10 +151,9 @@ array(
     "response": {
         "code": 201,
         "message": "ユーザ登録に成功しました。",
-        "response": {
+        "user": {
             "id": "1215",
             "username": "apiss",
-            "password": "apis",
             "email": "api@api.com",
             "image": "filepath.jpg",
             "twitter_id": "twitter_id",
@@ -236,7 +235,7 @@ array(
     "response": {
         "code": 201,
         "message": "ログインに成功しました。",
-        "response": {
+        "user": {
             "id": "1215",
             "username": "apiss",
             "password": "apis",
