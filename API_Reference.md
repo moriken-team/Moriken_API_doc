@@ -1105,3 +1105,74 @@ post_data:problem_id=1&user_id=test
     }
 }
 ```
+
+## Edit Evaluate Comment API
+
+### Summary
+問題の評価結果を更新するAPI<br />
+評価者が評価した内容を作問者が確認(容認or否認)した結果を更新する
+
+### Resource URL
+edit.json
+
+### Resource Information
+- Method: PUT
+- Contoroller#action : EvaluateComments#Edit
+
+|フィールド|説明|型|必須|
+|:------------:|:----------|:---|:----------:|
+|id|更新対象の評価コメントID|int|◯|
+|confirm_comment|作問者からの確認コメント|text|◯|
+|confirm_flag|作問者の確認フラグ(1:未確認,2:容認,3:否認)|int|◯|
+
+
+### Responce Parameter
+
+|フィールド|説明|型|
+|:------------:|:----------|:---|
+|code|APIの処理結果ステータスコード|int|
+|message|APIの処理結果メッセージ|text|
+|confirm_comment|作問者からの確認コメント|text|
+|confirm_flag|作問者の確認フラグ(1:未確認,2:容認,3:否認)|int|
+
+### Example Request(success)
+http://sakumon.jp/LK_API/evaluateComments/edit/1.json<br />
+post_data:id=1(idは↑のurlのパラメーターとして送る),confirm_comment=testComment&confirm_flg=2
+
+### Example Responce
+```
+{
+    "meta": {
+        "method": "PUT",
+        "url": "/LK_API/evaluateComments/edit/1.json"
+    },
+    "response": {
+        "confirm_comment": "tesComment",
+        "confirm_flag": "2"
+    }
+}
+```
+
+### Example Request(error)
+http://sakumon.jp/LK_API/evaluateComments/edit/1.json<br />
+post_data:id=1(idは↑のurlのパラメーターとして送る),confirm_comment=testComment
+
+### Example Responce
+```
+{
+    "meta": {
+        "method": "PUT",
+        "url": "/LK_API/evaluateComments/edit/1.json"
+    },
+    "error": {
+        "code": "400",
+        "message": "Validation Error",
+        "validation": {
+            "EvaluateComment": {
+                "confirm_flag": "confirm_flagを設定してください"
+            }
+        }
+    }
+}
+```
+
