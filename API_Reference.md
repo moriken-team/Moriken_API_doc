@@ -154,7 +154,6 @@ array(
         "response": {
             "id": "1215",
             "username": "apiss",
-            "password": "apis",
             "email": "api@api.com",
             "image": "filepath.jpg",
             "twitter_id": "twitter_id",
