@@ -566,29 +566,6 @@ post_data:kentei_id=1&employ=2012&grade=3&item=100
 }
 ```
 
-###Example Request(error)
-http://sakumon.jp/LK_API/problems/add.json
-post_data:kentei_id=1&employ=2012&grade=3&category_id=1
-
-###Example Responce(error)
-```
-{
-    "meta": {
-        "method": "GET",
-        "url": "/LK_API/problems/index.json"
-    },
-    "error": {
-        "code": "400",
-        "message": "Validation Error",
-        "validation": {
-            "Problem": {
-                "item": "itemを設定してください。"
-            }
-        }
-    }
-}
-```
-
 ## Making Question API
 
 ### Summary
@@ -717,32 +694,6 @@ post_data:kentei_id=1&user_id=1&type=2&grade=1&number=1&sentence=テスト問題
 }
 ```
 
-### Example Request（error）
-・typeを1(4択問題)に設定しwrong_answerを設定しなかった場合
-http://sakumon.jp/LK_API/problems/add.json<br />
-post_data:kentei_id=1&user_id=1&type=1&grade=1&number=1&sentence=テスト問題文&right_answer=テスト一問一答答え&description=テスト解答&public_flag&category_id=1&subcategory_id=1
-
-### Example Responce
-```
-{
-    "meta": {
-        "method": "POST",
-        "url": "/LK_API/problems/add.json"
-    },
-    "error": {
-        "code": "400",
-            "message": "Validation Error",
-            "validation": {
-                "Problem": {
-                    "wrong_answer1": "wrong_answer1を設定してください",
-                    "wrong_answer2": "wrong_answer2を設定してください",
-                    "wrong_answer3": "wrong_answer3を設定してください"
-                }
-            }
-    }
-}
-```
-
 ## Add Answer History API
 
 ### Summary
@@ -796,28 +747,6 @@ post_data:kentei_id=1&user_id=10&problem_id=5&answer_flag=1
             "kentei_id": "1",
             "problem_id": "5",
             "user_id": "10"
-        }
-    }
-}
-```
-
-### Example Request(error)
-http://moriken_test.com/LK_API/answerHistories/add.json<br />
-post_data:user_id=10&problem_id=5&answer_flag=1
-
-```
-{
-    "meta": {
-        "method": "POST",
-        "url": "/LK_API/answerHistories/add.json"
-    },
-    "error": {
-        "code": "400",
-        "message": "Validation Error",
-        "validation": {
-            "AnswerHistory": {
-                "kentei_id": "kentei_idを設定してください"
-            }
         }
     }
 }
@@ -900,28 +829,6 @@ post_data:kentei_id=1&user_id=10
 }
 ```
 
-### Example Request(error)
-http://sakumon.jp/LK_API/answerHistories/index.json<br />
-post_data:kentei_id=1
-
-```
-{
-    "meta": {
-        "method": "GET",
-        "url": "/LK_API/answerHistories/index.json"
-    },
-    "error": {
-        "code": "400",
-        "message": "Validation Error",
-        "validation": {
-            "AnswerHistory": {
-                "user_id": "user_idを設定してください"
-            }
-        }
-    }
-}
-```
-
 ## Add Evaluate Comment API
 
 ### Summary
@@ -977,30 +884,6 @@ post_data:evaluate_item_id=1&problem_id=1&user_id=1&evaluate_comment=いのう�
     }
 }
 ```
-
-### Example Request(error)
-http://sakumon.jp/LK_API/evaluateComments/add.json<br />
-post_data:evaluate_item_id=1&problem_id=1&user_id=いのうえ&evaluate_comment=test!
-
-### Example Responce
-```
-{
-    "meta": {
-        "method": "POST",
-        "url": "/LK_API/evaluateComments/add.json"
-    },
-    "error": {
-        "code": "400",
-        "message": "Validation Error",
-        "validation": {
-            "EvaluateComment": {
-                "user_id": "正しいuser_id(int)を設定してください"
-            }
-        }
-    }
-}
-```
-
 
 ## Index Evaluate Comment API
 
@@ -1082,30 +965,6 @@ post_data:problem_id=1&user_id=1
 }
 ```
 
-
-### Example Request(error)
-http://sakumon.jp/LK_API/evaluateComments/index.json<br />
-post_data:problem_id=1&user_id=test
-
-### Example Responce
-```
-{
-    "meta": {
-        "method": "GET",
-        "url": "/LK_API/evaluateComments/index.json"
-    },
-    "error": {
-        "code": "400",
-        "message": "Validation Error",
-        "validation": {
-            "EvaluateComment": {
-                "user_id": "正しいuser_id(int)を設定してください"
-            }
-        }
-    }
-}
-```
-
 ## Edit Evaluate Comment API
 
 ### Summary
@@ -1149,29 +1008,6 @@ post_data:id=1(idは↑のurlのパラメーターとして送る),confirm_comme
     "response": {
         "confirm_comment": "tesComment",
         "confirm_flag": "2"
-    }
-}
-```
-
-### Example Request(error)
-http://sakumon.jp/LK_API/evaluateComments/edit/1.json<br />
-post_data:id=1(idは↑のurlのパラメーターとして送る),confirm_comment=testComment
-
-### Example Responce
-```
-{
-    "meta": {
-        "method": "PUT",
-        "url": "/LK_API/evaluateComments/edit/1.json"
-    },
-    "error": {
-        "code": "400",
-        "message": "Validation Error",
-        "validation": {
-            "EvaluateComment": {
-                "confirm_flag": "confirm_flagを設定してください"
-            }
-        }
     }
 }
 ```
