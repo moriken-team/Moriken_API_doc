@@ -258,7 +258,9 @@ array(
 
 ### Summary
 - 過去問題を取得するAPIです。
-- 5問取得はランダムに取得します。
+- n問(100問未満)取得はランダムに取得します。
+- 全問(100問)取得は過去問の場合設問番号の昇順。オリジナル問題は登録順。
+- 一度に100問以上の問題を取得することは出来ません。
 
 ### Resource URL
 Problem.json
@@ -272,241 +274,317 @@ Problem.json
 
 |フィールド|説明|型|必須|
 |:------------:|:----------|:---|:----------:|
-|user_id|ユーザID|int|◯|
-|employ|年度|int|◯|
-|grade|級|int|◯|
+|kentei_id|どの検定の回答履歴か(1:もりけんweb,2:iOSapp,3:Androidapp,4:ガンライザー検定,5:たきざわ検定web,6:たきざわ検定app)|int|◯|
+|employ|年度(0:オリジナル問題,0以外:過去問対象西暦)|int|◯|
+|category_id|カテゴリID|int|級かカテゴリIDどちらか一つが◯<br />(過去問抽出時)<br />オリジナル問題抽出時は常に◯|
+|grade|級|int|級かカテゴリIDどちらか一つが◯<br />(過去問抽出時のみ)|
 |item|問題取得数|int|◯|
 
 ### Responce Parameter
+|フィールド|説明|型|
+|:------------:|:----------|:---|
+|code|APIの処理結果ステータスコード|int|
+|message|APIの処理結果メッセージ|text|
 
 |フィールド|説明|型|
 |:------------:|:----------|:---|
-|problem_id|問題ID|int|
-|employ|過去問題採用年度|int|
-|grade|過去問題採用級|int|
-|number|過去問題設問番号|int|
-|type|問題形式（1. 四択問題 2. 記述式問題）|int|
-|category_name|カテゴリ名|text|
-|subcategory_name|サブカテゴリ名|txet|
+|problem:|||
+|id|問題ID|int|
+|kentei_id|どの検定の問題か(1:もりけんweb,2:iOSapp,3:Androidapp,4:ガンライザー検定,5:たきざわ検定web,6:たきざわ検定app)|int|
+|user_id|問題作成者ID|int|
+|type|問題形式（1.四択問題 2.記述式問題）|int|
+|grade|過去問採用級|int|
+|number|過去問設問番号|int|
 |sentence|問題文|text|
 |right_answer|正解選択肢or正解文字列|text|
 |wrong_answer1|誤答選択肢1|text|
 |wrong_answer2|誤答選択肢2|text|
 |wrong_answer3|誤答選択肢3|text|
 |description|解説文|text|
+|other_answer|記述式問題の他の正解(カンマ区切り)|text|
+|image|画像パス|text|
+|latitude|経度・緯度情報|float|
+|longitude|経度・緯度情報|float|
+|reference|参考文献|text|
+|spot_id|ガンライザー検定用スポットID|int|
+|public_flag|問題の公開フラグ(非公開=0,公開=1) 過去問は公開,オリジナルは非公開|int|
+|category_id|カテゴリid|int|
+|subcategory_id|サブカテゴリid|int|
+|created|問題作成日|datetime|
+|modified|問題編集日|datetime|
 
-### Example Requesc（1問取得）
-http://...show.json?user_id=1&employ=2012&grade=3&item=1
+|フィールド|説明|型|
+|:------------:|:----------|:---|
+|category:|||
+|id|問題ID|int|
+|kentei_id|どの検定のカテゴリーか(1:もりけんweb,2:iOSapp,3:Androidapp,4:ガンライザー検定,5:たきざわ検定web,6:たきざわ検定app)|int|
+|name|カテゴリー名|text|
+|created|問題作成日|datetime|
 
-###Example Request（5問取得）
-http://...randomshow.json?user_id=1&employ=2012&grade=3&item=2
+### Example Request（1問取得）
+http://sakumon.jp/LK_API/problems/add.json<br />
+post_data:kentei_id=1&employ=2012&grade=3&category_id=1&item=1
 
 ### Example Responce（1問取得）
 ```
 {
-	code: 200,
-	message: "リクエストに成功しました。",
-	"problem": {
-		"problem_id": "1",
-		"employ": "2012",
-		"grade": "3",
-		"number": "",
-		"type": "",
-		"category_name": "",
-		"subcategory_name": "",
-		"sentence": "",
-		"right_answer": "",
-		"wrong_answer1": "",
-		"wrong_answer2": "",
-		"wrong_answer3": "",
-		"description": ""
-	}
+    "meta": {
+        "method": "GET",
+        "url": "/LK_API/problems/index.json"
+    },
+    "response": {
+        "code": 200,
+        "message": "リクエストに成功しました。",
+        "0": [
+            {
+                "Problem": {
+                    "id": "1384",
+                    "kentei_id": "1",
+                    "user_id": "7",
+                    "type": "1",
+                    "grade": "3",
+                    "number": "4",
+                    "sentence": "テスト問題",
+                    "right_answer": "テスト正解",
+                    "wrong_answer1": "テスト誤答1",
+                    "wrong_answer2": "テスト誤答2",
+                    "wrong_answer3": "テスト誤答3",
+                    "description": "テスト解説",
+                    "other_answer": "",
+                    "image": "",
+                    "latitude": "0",
+                    "longitude": "0",
+                    "reference": "",
+                    "spot_id": "0",
+                    "public_flag": "1",
+                    "category_id": "1",
+                    "subcategory_id": "53",
+                    "employ": "2012",
+                    "created": "2009-11-13 13:09:00",
+                    "modified": "2009-11-13 13:09:00"
+                },
+                "Category": {
+                    "id": "1",
+                    "kentei_id": "1",
+                    "name": "盛岡の文化",
+                    "created": "2015-02-22 17:02:46"
+                }
+            }
+        ]
+    }
 }
 ```
+
+###Example Request（5問取得）
+http://sakumon.jp/LK_API/problems/add.json<br />
+post_data:kentei_id=1&employ=2012&grade=3&category_id=1&item=5
 
 ### Example Responce（5問取得）
 ```
 {
-	code: 200,
-	message: "リクエストに成功しました。",
-	"problem": [
-		{
-			"problem_id": "1",
-			"employ": "2012",
-			"grade": "3",
-			"number": "",
-			"type": "",
-			"category_name": "",
-			"subcategory_name": "",
-			"sentence": "",
-			"right_answer": "",
-			"wrong_answer1": "",
-			"wrong_answer2": "",
-			"wrong_answer3": "",
-			"description": ""
-		},
-		{
-			"problem_id": "2",
-			"employ": "2012",
-			"grade": "3",
-			"number": "",
-			"type": "",
-			"category_name": "",
-			"subcategory_name": "",
-			"sentence": "",
-			"right_answer": "",
-			"wrong_answer1": "",
-			"wrong_answer2": "",
-			"wrong_answer3": "",
-			"description": ""
-		},
-		{
-			"problem_id": "3",
-			"employ": "2012",
-			"grade": "3",
-			"number": "",
-			"type": "",
-			"category_name": "",
-			"subcategory_name": "",
-			"sentence": "",
-			"right_answer": "",
-			"wrong_answer1": "",
-			"wrong_answer2": "",
-			"wrong_answer3": "",
-			"description": ""
-		},
-		{
-			"problem_id": "4",
-			"employ": "2012",
-			"grade": "3",
-			"number": "",
-			"type": "",
-			"category_name": "",
-			"subcategory_name": "",
-			"sentence": "",
-			"right_answer": "",
-			"wrong_answer1": "",
-			"wrong_answer2": "",
-			"wrong_answer3": "",
-			"description": ""
-		},
-		{
-			"problem_id": "5",
-			"employ": "2012",
-			"grade": "3",
-			"number": "",
-			"type": "",
-			"category_name": "",
-			"subcategory_name": "",
-			"sentence": "",
-			"right_answer": "",
-			"wrong_answer1": "",
-			"wrong_answer2": "",
-			"wrong_answer3": "",
-			"description": ""
-		}
-	]
+    "meta": {
+        "method": "GET",
+        "url": "/LK_API/problems/index.json"
+    },
+    "response": {
+        "code": 200,
+        "message": "リクエストに成功しました。",
+        "0": [
+            {
+                "Problem": {
+                    "id": "1384",
+                    "kentei_id": "1",
+                    "user_id": "7",
+                    "type": "1",
+                    "grade": "3",
+                    "number": "4",
+                    "sentence": "テスト問題",
+                    "right_answer": "テスト正解",
+                    "wrong_answer1": "テスト誤答1",
+                    "wrong_answer2": "テスト誤答2",
+                    "wrong_answer3": "テスト誤答3",
+                    "description": "テスト解説",
+                    "other_answer": "",
+                    "image": "",
+                    "latitude": "0",
+                    "longitude": "0",
+                    "reference": "",
+                    "spot_id": "0",
+                    "public_flag": "1",
+                    "category_id": "1",
+                    "subcategory_id": "53",
+                    "employ": "2012",
+                    "created": "2009-11-13 13:09:00",
+                    "modified": "2009-11-13 13:09:00"
+                },
+                "Category": {
+                    "id": "1",
+                    "kentei_id": "1",
+                    "name": "盛岡の文化",
+                    "created": "2015-02-22 17:02:46"
+                }
+            }
+        ],
+
+        ・
+        ・
+        ・
+
+        "4": [
+            {
+                "Problem": {
+                    "id": "1460",
+                    "kentei_id": "1",
+                    "user_id": "7",
+                    "type": "1",
+                    "grade": "3",
+                    "number": "84",
+                    "sentence": "テスト問題",
+                    "right_answer": "テスト正解",
+                    "wrong_answer1": "テスト誤答1",
+                    "wrong_answer2": "テスト誤答2",
+                    "wrong_answer3": "テスト誤答3",
+                    "description": "テスト解説",
+                    "other_answer": "",
+                    "image": "",
+                    "latitude": "0",
+                    "longitude": "0",
+                    "reference": "",
+                    "spot_id": "0",
+                    "public_flag": "1",
+                    "category_id": "1",
+                    "subcategory_id": "16",
+                    "employ": "2012",
+                    "created": "2009-11-14 14:01:00",
+                    "modified": "2009-11-14 14:01:00"
+                },
+                "Category": {
+                    "id": "1",
+                    "kentei_id": "1",
+                    "name": "盛岡の文化",
+                    "created": "2015-02-22 17:02:46"
+                }
+            }
+        ]
+    }
 }
 ```
 
-###Example Responce（リクエスト失敗時）
+###Example Request(100問取得)
+http://sakumon.jp/LK_API/problems/add.json<br />
+post_data:kentei_id=1&employ=2012&grade=3&item=100
+
+### Example Responce(100問取得)
 ```
 {
-    "code" : 401,
-    "message" : "認証が失敗しているか、未認証の状態です。"
+    "meta": {
+        "method": "GET",
+        "url": "/LK_API/problems/index.json"
+    },
+    "response": {
+        "code": 200,
+        "message": "リクエストに成功しました。",
+        "0": [
+            {
+                "Problem": {
+                    "id": "1379",
+                    "kentei_id": "1",
+                    "user_id": "7",
+                    "type": "1",
+                    "grade": "3",
+                    "number": "1",
+                    "sentence": "テスト問題",
+                    "right_answer": "テスト正解",
+                    "wrong_answer1": "テスト誤答1",
+                    "wrong_answer2": "テスト誤答2",
+                    "wrong_answer3": "テスト誤答3",
+                    "description": "テスト解説",
+                    "other_answer": "",
+                    "image": "",
+                    "latitude": "0",
+                    "longitude": "0",
+                    "reference": "",
+                    "spot_id": "0",
+                    "public_flag": "1",
+                    "category_id": "1",
+                    "subcategory_id": "53",
+                    "employ": "2012",
+                    "created": "2009-11-13 13:09:00",
+                    "modified": "2009-11-13 13:09:00"
+                },
+                "Category": {
+                    "id": "1",
+                    "kentei_id": "1",
+                    "name": "盛岡の文化",
+                    "created": "2015-02-22 17:02:46"
+                }
+            }
+        ],
+
+        ・
+        ・
+        ・
+
+        "99": [
+            {
+                "Problem": {
+                    "id": "1475",
+                    "kentei_id": "1",
+                    "user_id": "7",
+                    "type": "1",
+                    "grade": "3",
+                    "number": "100",
+                    "sentence": "テスト問題",
+                    "right_answer": "テスト正解",
+                    "wrong_answer1": "テスト誤答1",
+                    "wrong_answer2": "テスト誤答2",
+                    "wrong_answer3": "テスト誤答3",
+                    "description": "テスト解説",
+                    "other_answer": "",
+                    "image": "",
+                    "latitude": "0",
+                    "longitude": "0",
+                    "reference": "",
+                    "spot_id": "0",
+                    "public_flag": "1",
+                    "category_id": "1",
+                    "subcategory_id": "30",
+                    "employ": "2012",
+                    "created": "2009-11-14 14:01:00",
+                    "modified": "2009-11-14 14:01:00"
+                },
+                "Category": {
+                    "id": "1",
+                    "kentei_id": "1",
+                    "name": "盛岡の文化",
+                    "created": "2015-02-22 17:02:46"
+                }
+            }
+        ]
+    }
 }
 ```
 
-## Get All Exist Questions API
+###Example Request(error)
+http://sakumon.jp/LK_API/problems/add.json
+post_data:kentei_id=1&employ=2012&grade=3&category_id=1
 
-### Summary
-過去問題を取得するAPIです。
-
-### Resource URL
-Problem.json
-
-### Resource Information
-- Method: GET
-- Contoroller#action: Problems#index
-- Requires Authentication: No
-
-### Request Parameter
-
-|フィールド|説明|型|必須|
-|:------------:|:----------|:---|:----------:|
-|user_id|ユーザID|int|◯|
-|employ|年度|int|◯|
-|grade|級|int|◯|
-
-### Responce Parameter
-
-|フィールド|説明|型|
-|:------------:|:----------|:---|
-|problem_id|問題ID|int|
-|employ|過去問題採用年度|int|
-|grade|過去問題採用級|int|
-|number|過去問題設問番号|int|
-|type|問題形式（1. 四択問題　2. 記述式問題）|int|
-|category_name|カテゴリ名|text|
-|subcategory_name|サブカテゴリ名|txet|
-|sentence|問題文|text|
-|right_answer|正解選択肢or正解文字列|text|
-|wrong_answer1|誤答選択肢1|text|
-|wrong_answer2|誤答選択肢2|text|
-|wrong_answer3|誤答選択肢3|text|
-|description|解説文|text|
-
-###Example Request
-http://...index.json?problem_id=1&employ=2012&grade=3
-
-### Example Responce
+###Example Responce(error)
 ```
 {
-	code: 200,
-	message: "リクエストに成功しました。",
-	"problem": [
-		{
-			"problem_id": "1",
-			"employ": "2012",
-			"grade": "3",
-			"number": "1",
-			"type": "",
-			"category_name": "",
-			"subcategory_name": "",
-			"sentence": "",
-			"right_answer": "",
-			"wrong_answer1": "",
-			"wrong_answer2": "",
-			"wrong_answer3": "",
-			"description": ""
-		},
-					.
-					.
-					.
-		{
-			"problem_id": "100",
-			"employ": "2012",
-			"grade": "3",
-			"number": "100",
-			"type": "",
-			"category_name": "",
-			"subcategory_name": "",
-			"sentence": "",
-			"right_answer": "",
-			"wrong_answer1": "",
-			"wrong_answer2": "",
-			"wrong_answer3": "",
-			"description": ""
-		}
-	]
-}
-```
-
-###Example Responce（リクエスト失敗時）
-```
-{
-    "code" : 401,
-    "message" : "認証が失敗しているか、未認証の状態です。"
+    "meta": {
+        "method": "GET",
+        "url": "/LK_API/problems/index.json"
+    },
+    "error": {
+        "code": "400",
+        "message": "Validation Error",
+        "validation": {
+            "Problem": {
+                "item": "itemを設定してください。"
+            }
+        }
+    }
 }
 ```
 
@@ -527,7 +605,7 @@ add.json
 
 |フィールド|説明|型|必須|
 |:------------:|:----------|:---|:----------:|
-|kentei_id|どの検定の回答履歴か(1:もりけんweb,2:iOSapp,3:Androidapp,4:ガンライザー検定,5:たきざわ検定web,6:たきざわ検定app)|int|◯|
+|kentei_id|どの検定の問題か(1:もりけんweb,2:iOSapp,3:Androidapp,4:ガンライザー検定,5:たきざわ検定web,6:たきざわ検定app)|int|◯|
 |user_id|問題作成者ID|int|◯|
 |type|問題形式（1.四択問題 2.記述式問題）|int|◯|
 |grade|過去問採用級|int|過去問作成時は◯|
@@ -553,7 +631,7 @@ add.json
 |:------------:|:----------|:---|
 |code|APIの処理結果ステータスコード|int|
 |message|APIの処理結果メッセージ|text|
-|kentei_id|どの検定の回答履歴か(1:もりけんweb,2:iOSapp,3:Androidapp,4:ガンライザー検定,5:たきざわ検定web,6:たきざわ検定app)|int|
+|kentei_id|どの検定の問題か(1:もりけんweb,2:iOSapp,3:Androidapp,4:ガンライザー検定,5:たきざわ検定web,6:たきざわ検定app)|int|
 |user_id|問題作成者ID|int|
 |type|問題形式（1.四択問題 2.記述式問題）|int|
 |grade|過去問採用級|int|
@@ -842,3 +920,258 @@ post_data:kentei_id=1
     }
 }
 ```
+
+## Add Evaluate Comment API
+
+### Summary
+問題の評価内容を登録するAPI
+
+### Resource URL
+add.json
+
+### Resource Information
+- Method: POST
+- Contoroller#action : EvaluateComments#add
+
+|フィールド|説明|型|必須|
+|:------------:|:----------|:---|:----------:|
+|evaluate_item_id|評価対象の項目ID|int|◯|
+|problem_id|評価対象の問題ID|int|◯|
+|user_id|評価ユーザID|int|◯|
+|evaluate_comment|評価コメント(評価者)|text|◯|
+
+
+### Responce Parameter
+
+|フィールド|説明|型|
+|:------------:|:----------|:---|
+|code|APIの処理結果ステータスコード|int|
+|message|APIの処理結果メッセージ|text|
+|evaluate_item_id|評価対象の項目ID|int|
+|problem_id|評価対象の問題ID|int|
+|user_id|評価ユーザID|int|
+|evaluate_comment|評価コメント(評価者)|text|
+
+
+### Example Request(success)
+http://sakumon.jp/LK_API/evaluateComments/add.json<br />
+post_data:evaluate_item_id=1&problem_id=1&user_id=1&evaluate_comment=いのうえ
+
+### Example Responce
+```
+{
+    "meta": {
+        "method": "POST",
+        "url": "/LK_API/evaluateComments/add.json"
+    },
+    "response": {
+        "code": 201,
+        "message": "作成に成功しました。",
+        "EvaluateComment": {
+            "evaluate_item_id": "1",
+            "problem_id": "1",
+            "user_id": "1"
+            "evaluate_comment": "いのうえ",
+        }
+    }
+}
+```
+
+### Example Request(error)
+http://sakumon.jp/LK_API/evaluateComments/add.json<br />
+post_data:evaluate_item_id=1&problem_id=1&user_id=いのうえ&evaluate_comment=test!
+
+### Example Responce
+```
+{
+    "meta": {
+        "method": "POST",
+        "url": "/LK_API/evaluateComments/add.json"
+    },
+    "error": {
+        "code": "400",
+        "message": "Validation Error",
+        "validation": {
+            "EvaluateComment": {
+                "user_id": "正しいuser_id(int)を設定してください"
+            }
+        }
+    }
+}
+```
+
+
+## Index Evaluate Comment API
+
+### Summary
+問題の評価結果を取得するAPI
+
+### Resource URL
+index.json
+
+### Resource Information
+- Method: GET
+- Contoroller#action : EvaluateComments#index
+
+|フィールド|説明|型|必須|
+|:------------:|:----------|:---|:----------:|
+|problem_id|評価対象の問題ID|int|problem_id,user_idのいずれか一つ以上が◯|
+|user_id|評価ユーザID|int|problem_id,user_idのいずれか一つ以上が◯|
+
+
+### Responce Parameter
+
+|フィールド|説明|型|
+|:------------:|:----------|:---|
+|code|APIの処理結果ステータスコード|int|
+|message|APIの処理結果メッセージ|text|
+|evaluate_item_id|評価対象の項目ID|int|
+|problem_id|評価対象の問題ID|int|
+|user_id|評価ユーザID|int|
+|evaluate_comment|評価コメント(評価者)|text|
+|confirm_comment|確認コメント(作問者)|text|
+|confirm_flag|作問者の確認フラグ(1:未確認,2:容認,3:否認)|int|
+|created|評価登録日|datetime|
+
+
+### Example Request(success)
+http://sakumon.jp/LK_API/evaluateComments/index.json<br />
+post_data:problem_id=1&user_id=1
+
+### Example Responce
+```
+{
+    "meta": {
+        "method": "GET",
+        "url": "/LK_API/evaluateComments/index.json"
+    },
+    "response": {
+        "code": 200,
+        "message": "リクエストの作成に成功しました。",
+        "0": {
+            "EvaluateComment": {
+                "id": "1",
+                "evaluate_item_id": "1",
+                "problem_id": "1",
+                "user_id": "1"
+                "evaluate_comment": "test!",
+                "confirm_comment": "",
+                "confirm_flag": "1",
+                "created": "2015-03-16 23:57:16",
+            }
+        },
+
+        ・
+        ・
+        ・
+
+        "3": {
+            "EvaluateComment": {
+                "id": "1",
+                "evaluate_item_id": "1",
+                "problem_id": "1",
+                "user_id": "1"
+                "evaluate_comment": "test!2",
+                "confirm_comment": "",
+                "confirm_flag": "1",
+                "created": "2015-03-17 23:57:16",
+            }
+        }
+    }
+}
+```
+
+
+### Example Request(error)
+http://sakumon.jp/LK_API/evaluateComments/index.json<br />
+post_data:problem_id=1&user_id=test
+
+### Example Responce
+```
+{
+    "meta": {
+        "method": "GET",
+        "url": "/LK_API/evaluateComments/index.json"
+    },
+    "error": {
+        "code": "400",
+        "message": "Validation Error",
+        "validation": {
+            "EvaluateComment": {
+                "user_id": "正しいuser_id(int)を設定してください"
+            }
+        }
+    }
+}
+```
+
+## Edit Evaluate Comment API
+
+### Summary
+問題の評価結果を更新するAPI<br />
+評価者が評価した内容を作問者が確認(容認or否認)した結果を更新する
+
+### Resource URL
+edit.json
+
+### Resource Information
+- Method: PUT
+- Contoroller#action : EvaluateComments#Edit
+
+|フィールド|説明|型|必須|
+|:------------:|:----------|:---|:----------:|
+|id|更新対象の評価コメントID|int|◯|
+|confirm_comment|作問者からの確認コメント|text|◯|
+|confirm_flag|作問者の確認フラグ(1:未確認,2:容認,3:否認)|int|◯|
+
+
+### Responce Parameter
+
+|フィールド|説明|型|
+|:------------:|:----------|:---|
+|code|APIの処理結果ステータスコード|int|
+|message|APIの処理結果メッセージ|text|
+|confirm_comment|作問者からの確認コメント|text|
+|confirm_flag|作問者の確認フラグ(1:未確認,2:容認,3:否認)|int|
+
+### Example Request(success)
+http://sakumon.jp/LK_API/evaluateComments/edit/1.json<br />
+post_data:id=1(idは↑のurlのパラメーターとして送る),confirm_comment=testComment&confirm_flg=2
+
+### Example Responce
+```
+{
+    "meta": {
+        "method": "PUT",
+        "url": "/LK_API/evaluateComments/edit/1.json"
+    },
+    "response": {
+        "confirm_comment": "tesComment",
+        "confirm_flag": "2"
+    }
+}
+```
+
+### Example Request(error)
+http://sakumon.jp/LK_API/evaluateComments/edit/1.json<br />
+post_data:id=1(idは↑のurlのパラメーターとして送る),confirm_comment=testComment
+
+### Example Responce
+```
+{
+    "meta": {
+        "method": "PUT",
+        "url": "/LK_API/evaluateComments/edit/1.json"
+    },
+    "error": {
+        "code": "400",
+        "message": "Validation Error",
+        "validation": {
+            "EvaluateComment": {
+                "confirm_flag": "confirm_flagを設定してください"
+            }
+        }
+    }
+}
+```
+
