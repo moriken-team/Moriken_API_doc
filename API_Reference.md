@@ -1015,3 +1015,67 @@ post_data:id=1(idは↑のurlのパラメーターとして送る),confirm_comme
 }
 ```
 
+## Index Evaluate Item API
+
+### Summary
+対象検定の評価項目を取得するAPI<br />
+
+### Resource URL
+index.json
+
+### Resource Information
+- Method: GET
+- Contoroller#action : EvaluateItems#Index
+
+|フィールド|説明|型|必須|
+|:------------:|:----------|:---|:----------:|
+|kentei_id|どの検定の回答履歴か(1:もりけんweb,2:iOSapp,3:Androidapp,4:ガンライザー検定,5:たきざわ検定web,6:たきざわ検定app)|int|◯|
+
+
+### Responce Parameter
+
+|フィールド|説明|型|
+|:------------:|:----------|:---|
+|code|APIの処理結果ステータスコード|int|
+|message|APIの処理結果メッセージ|text|
+|kentei_id|どの検定の回答履歴か(1:もりけんweb,2:iOSapp,3:Androidapp,4:ガンライザー検定,5:たきざわ検定web,6:たきざわ検定app)|int|◯|
+|name|カテゴリー名|text|
+
+### Example Request(success)
+http://sakumon.jp/LK_API/evaluateItems/index.json<br />
+post_data:kentei_id=1
+
+### Example Responce
+```
+{
+    "meta": {
+        "method": "GET",
+        "url": "/LK_API/evaluateItems/index.json"
+    },
+    "response": {
+        "code": 200,
+        "message": "リクエストに成功しました。"
+        "EvaluateItems": [
+            {
+                "EvaluateItem": {
+                    "id": "1",
+                    "kentei_id": "1",
+                    "name": "項目名1"
+                    "created": "2015-01-01 00:00:00",
+                }
+            },
+            ・
+            ・
+            ・
+            {
+                "EvaluateItem": {
+                    "id": "3",
+                    "kentei_id": "1",
+                    "name": "項目名2"
+                    "created": "2015-01-01 00:00:00",
+                }
+            }
+        ],
+    }
+}
+```
