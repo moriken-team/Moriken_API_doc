@@ -1133,6 +1133,7 @@ post_data:kentei_id=1&name=盛岡の文化
 
 ### Summary
 カテゴリーを取得するAPI<br />
+対象検定のサブカテゴリも同時に抽出する
 
 ### Resource URL
 index.json
@@ -1191,6 +1192,58 @@ post_data:kentei_id=1
                 }
             }
         ]
+    }
+}
+```
+
+## Add SubCategory API
+
+### Summary
+サブカテゴリーを追加するAPI<br />
+
+### Resource URL
+add.json
+
+### Resource Information
+- Method: POST
+- Contoroller#action : SubCategories#Add
+
+|フィールド|説明|型|必須|
+|:------------:|:----------|:---|:----------:|
+|kentei_id|どの検定の回答履歴か(1:もりけんweb,2:iOSapp,3:Androidapp,4:ガンライザー検定,5:たきざわ検定web,6:たきざわ検定app)|int|◯|
+|category_id|親となるカテゴリーID|int|◯|
+|name|サブカテゴリー名|text|◯|
+
+
+### Responce Parameter
+
+|フィールド|説明|型|
+|:------------:|:----------|:---|
+|code|APIの処理結果ステータスコード|int|
+|message|APIの処理結果メッセージ|text|
+|kentei_id|どの検定の回答履歴か(1:もりけんweb,2:iOSapp,3:Androidapp,4:ガンライザー検定,5:たきざわ検定web,6:たきざわ検定app)|int|
+|category_id|親となるカテゴリーID|int|
+|name|カテゴリー名|text|
+
+### Example Request(success)
+http://sakumon.jp/LK_API/subCategories/add.json<br />
+post_data:category_id=2&kentei_id=3&name=盛岡の食文化
+
+### Example Responce
+```
+{
+    "meta": {
+        "method": "POST",
+        "url": "/LK_API/subcategories/add.json"
+    },
+    "response": {
+        "code": 201,
+        "message": "作成に成功しました。",
+        "Subcategory": {
+            "kentei_id": "3",
+            "category_id": "2",
+            "name": "盛岡の食文化"
+        }
     }
 }
 ```
