@@ -1038,7 +1038,7 @@ index.json
 |:------------:|:----------|:---|
 |code|APIの処理結果ステータスコード|int|
 |message|APIの処理結果メッセージ|text|
-|kentei_id|どの検定の回答履歴か(1:もりけんweb,2:iOSapp,3:Androidapp,4:ガンライザー検定,5:たきざわ検定web,6:たきざわ検定app)|int|◯|
+|kentei_id|どの検定の回答履歴か(1:もりけんweb,2:iOSapp,3:Androidapp,4:ガンライザー検定,5:たきざわ検定web,6:たきざわ検定app)|int|
 |name|評価項目名|text|
 
 ### Example Request(success)
@@ -1095,7 +1095,7 @@ add.json
 |フィールド|説明|型|必須|
 |:------------:|:----------|:---|:----------:|
 |kentei_id|どの検定の回答履歴か(1:もりけんweb,2:iOSapp,3:Androidapp,4:ガンライザー検定,5:たきざわ検定web,6:たきざわ検定app)|int|◯|
-|name|カテゴリー名|text|
+|name|カテゴリー名|text|◯|
 
 
 ### Responce Parameter
@@ -1104,7 +1104,7 @@ add.json
 |:------------:|:----------|:---|
 |code|APIの処理結果ステータスコード|int|
 |message|APIの処理結果メッセージ|text|
-|kentei_id|どの検定の回答履歴か(1:もりけんweb,2:iOSapp,3:Androidapp,4:ガンライザー検定,5:たきざわ検定web,6:たきざわ検定app)|int|◯|
+|kentei_id|どの検定の回答履歴か(1:もりけんweb,2:iOSapp,3:Androidapp,4:ガンライザー検定,5:たきざわ検定web,6:たきざわ検定app)|int|
 |name|カテゴリー名|text|
 
 ### Example Request(success)
@@ -1125,6 +1125,72 @@ post_data:kentei_id=1&name=盛岡の文化
             "kentei_id": "1",
             "name": "盛岡の文化"
         }
+    }
+}
+```
+
+## Index Category API
+
+### Summary
+カテゴリーを取得するAPI<br />
+
+### Resource URL
+index.json
+
+### Resource Information
+- Method: GET
+- Contoroller#action : Categories#Index
+
+|フィールド|説明|型|必須|
+|:------------:|:----------|:---|:----------:|
+|kentei_id|どの検定の回答履歴か(1:もりけんweb,2:iOSapp,3:Androidapp,4:ガンライザー検定,5:たきざわ検定web,6:たきざわ検定app)|int|◯|
+
+
+### Responce Parameter
+
+|フィールド|説明|型|
+|:------------:|:----------|:---|
+|code|APIの処理結果ステータスコード|int|
+|message|APIの処理結果メッセージ|text|
+|id|カテゴリーID|int|
+|kentei_id|どの検定の回答履歴か(1:もりけんweb,2:iOSapp,3:Androidapp,4:ガンライザー検定,5:たきざわ検定web,6:たきざわ検定app)|int|
+|name|カテゴリー名|text|
+
+### Example Request(success)
+http://sakumon.jp/LK_API/categories/index.json<br />
+post_data:kentei_id=1
+
+### Example Responce
+```
+{
+    "meta": {
+        "method": "GET",
+        "url": "/LK_API/categories/index.json"
+    },
+    "response": {
+        "code": 200,
+        "message": "リクエストに成功しました。",
+        "Categories": [
+            {
+                "Category": {
+                    "id": "9",
+                    "kentei_id": "1",
+                    "name": "盛岡の歴史"
+                    "created": "2015-02-22 17:02:46",
+                }
+            },
+            ・
+            ・
+            ・
+            {
+                "Category": {
+                    "id": "14",
+                    "kentei_id": "1",
+                    "name": "盛岡の現在"
+                    "created": "2015-02-22 17:02:46",
+                }
+            }
+        ]
     }
 }
 ```
