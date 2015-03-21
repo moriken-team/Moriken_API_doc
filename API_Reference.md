@@ -1351,3 +1351,80 @@ post_data:target=2&from_user_id=1&to_action_id=2&comment=テストコメント
     }
 }
 ```
+
+## Index Comment API
+
+### Summary
+コメントを取得するAPI<br />
+
+### Resource URL
+index.json
+
+### Resource Information
+- Method: GET
+- Contoroller#action : Comments#Index
+
+|フィールド|説明|型|必須|
+|:------------:|:----------|:---|:----------:|
+|target|何に対してのコメントか(1:マイページ,2:問題)|int|◯|
+|from_user_id|コメントしたユーザーID|int||
+|to_action_id|コメントされたID(ユーザor問題)|int|◯|
+
+
+### Responce Parameter
+
+|フィールド|説明|型|
+|:------------:|:----------|:---|
+|code|APIの処理結果ステータスコード|int|
+|message|APIの処理結果メッセージ|text|
+|target|何に対してのコメントか(1:マイページ,2:問題)|int|
+|from_user_id|コメントしたユーザーID|int|
+|to_action_id|コメントされたID(ユーザor問題)|int|
+|comment|コメント内容|text|
+
+### Example Request(success)
+http://sakumon.jp/LK_API/comments/index.json<br />
+post_data:target=1&from_user_id=2&to_action_id=2
+
+### Example Responce
+```
+{
+    "meta": {
+        "method": "GET",
+        "url": "/LK_API/comments/index.json"
+    },
+    "response": [
+        {
+            "Comment": {
+                "id": "13",
+                "target": "1",
+                "from_user_id": "2",
+                "to_action_id": "2",
+                "comment": "test--!"
+            },
+            "User": {
+                "id": "2",
+                "username": "テストユーザ",
+                "image": "0"
+            }
+        },
+        ・
+        ・
+        ・
+        {
+            "Comment": {
+                "id": "14",
+                "target": "1",
+                "from_user_id": "2",
+                "to_action_id": "2",
+                "comment": "test--!"
+            },
+            "User": {
+                "id": "2",
+                "username": "テストユーザ",
+                "image": "0"
+            }
+        }
+    ]
+}
+```
