@@ -1377,10 +1377,22 @@ index.json
 |:------------:|:----------|:---|
 |code|APIの処理結果ステータスコード|int|
 |message|APIの処理結果メッセージ|text|
+
+|フィールド|説明|型|
+|:------------:|:----------|:---|
+|Comment:|||
+|id|commentテーブルID|int|
 |target|何に対してのコメントか(1:マイページ,2:問題)|int|
 |from_user_id|コメントしたユーザーID|int|
 |to_action_id|コメントされたID(ユーザor問題)|int|
 |comment|コメント内容|text|
+
+|フィールド|説明|型|
+|:------------:|:----------|:---|
+|User:|||
+|id|userテーブルID|int|
+|username|ユーザ名|text|
+|image|ユーザアイコン画像|text|
 
 ### Example Request(success)
 http://sakumon.jp/LK_API/comments/index.json<br />
