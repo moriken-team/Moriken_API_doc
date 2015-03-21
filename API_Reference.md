@@ -1039,7 +1039,7 @@ index.json
 |code|APIの処理結果ステータスコード|int|
 |message|APIの処理結果メッセージ|text|
 |kentei_id|どの検定の回答履歴か(1:もりけんweb,2:iOSapp,3:Androidapp,4:ガンライザー検定,5:たきざわ検定web,6:たきざわ検定app)|int|◯|
-|name|カテゴリー名|text|
+|name|評価項目名|text|
 
 ### Example Request(success)
 http://sakumon.jp/LK_API/evaluateItems/index.json<br />
@@ -1076,6 +1076,55 @@ post_data:kentei_id=1
                 }
             }
         ],
+    }
+}
+```
+
+## Add Category API
+
+### Summary
+カテゴリーを追加するAPI<br />
+
+### Resource URL
+add.json
+
+### Resource Information
+- Method: POST
+- Contoroller#action : Categories#Add
+
+|フィールド|説明|型|必須|
+|:------------:|:----------|:---|:----------:|
+|kentei_id|どの検定の回答履歴か(1:もりけんweb,2:iOSapp,3:Androidapp,4:ガンライザー検定,5:たきざわ検定web,6:たきざわ検定app)|int|◯|
+|name|カテゴリー名|text|
+
+
+### Responce Parameter
+
+|フィールド|説明|型|
+|:------------:|:----------|:---|
+|code|APIの処理結果ステータスコード|int|
+|message|APIの処理結果メッセージ|text|
+|kentei_id|どの検定の回答履歴か(1:もりけんweb,2:iOSapp,3:Androidapp,4:ガンライザー検定,5:たきざわ検定web,6:たきざわ検定app)|int|◯|
+|name|カテゴリー名|text|
+
+### Example Request(success)
+http://sakumon.jp/LK_API/categories/add.json<br />
+post_data:kentei_id=1&name=盛岡の文化
+
+### Example Responce
+```
+{
+    "meta": {
+        "method": "POST",
+        "url": "/LK_API/categories/add.json"
+    },
+    "response": {
+        "code": 201,
+        "message": "作成に成功しました。",
+        "Category": {
+            "kentei_id": "1",
+            "name": "盛岡の文化"
+        }
     }
 }
 ```
