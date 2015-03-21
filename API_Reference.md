@@ -1296,3 +1296,58 @@ post_data:kentei_id=1&name=石川啄木
     }
 }
 ```
+
+## Add Comment API
+
+### Summary
+コメントを追加するAPI<br />
+
+### Resource URL
+add.json
+
+### Resource Information
+- Method: POST
+- Contoroller#action : Comments#Add
+
+|フィールド|説明|型|必須|
+|:------------:|:----------|:---|:----------:|
+|target|何に対してのコメントか(1:マイページ,2:問題)|int|◯|
+|from_user_id|コメントしたユーザーID|int|◯|
+|to_action_id|コメントされたID(ユーザor問題)|int|◯|
+|comment|コメント内容|text|◯|
+
+
+### Responce Parameter
+
+|フィールド|説明|型|
+|:------------:|:----------|:---|
+|code|APIの処理結果ステータスコード|int|
+|message|APIの処理結果メッセージ|text|
+|target|何に対してのコメントか(1:マイページ,2:問題)|int|
+|from_user_id|コメントしたユーザーID|int|
+|to_action_id|コメントされたID(ユーザor問題)|int|
+|comment|コメント内容|text|
+
+### Example Request(success)
+http://sakumon.jp/LK_API/comments/add.json<br />
+post_data:target=2&from_user_id=1&to_action_id=2&comment=テストコメント
+
+### Example Responce
+```
+{
+    "meta": {
+        "method": "POST",
+        "url": "/LK_API/comments/add.json"
+    },
+    "response": {
+        "code": 201,
+        "message": "作成に成功しました。",
+        "Comment": {
+            "target": "2",
+            "from_user_id": "1",
+            "to_action_id": "2"
+            "comment": "テストコメント",
+        }
+    }
+}
+```
