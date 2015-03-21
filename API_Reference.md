@@ -1247,3 +1247,52 @@ post_data:category_id=2&kentei_id=3&name=盛岡の食文化
     }
 }
 ```
+
+## Add Tag API
+
+### Summary
+タグを追加するAPI<br />
+
+### Resource URL
+add.json
+
+### Resource Information
+- Method: POST
+- Contoroller#action : Tags#Add
+
+|フィールド|説明|型|必須|
+|:------------:|:----------|:---|:----------:|
+|kentei_id|どの検定の回答履歴か(1:もりけんweb,2:iOSapp,3:Androidapp,4:ガンライザー検定,5:たきざわ検定web,6:たきざわ検定app)|int|◯|
+|name|タグ名|text|◯|
+
+
+### Responce Parameter
+
+|フィールド|説明|型|
+|:------------:|:----------|:---|
+|code|APIの処理結果ステータスコード|int|
+|message|APIの処理結果メッセージ|text|
+|kentei_id|どの検定の回答履歴か(1:もりけんweb,2:iOSapp,3:Androidapp,4:ガンライザー検定,5:たきざわ検定web,6:たきざわ検定app)|int|
+|name|タグ名|text|
+
+### Example Request(success)
+http://sakumon.jp/LK_API/tags/add.json<br />
+post_data:kentei_id=1&name=石川啄木
+
+### Example Responce
+```
+{
+    "meta": {
+        "method": "POST",
+        "url": "/LK_API/tags/add.json"
+    },
+    "response": {
+        "code": 201,
+        "message": "作成に成功しました。",
+        "Tag": {
+            "kentei_id": "1",
+            "name": "石川啄木"
+        }
+    }
+}
+```
