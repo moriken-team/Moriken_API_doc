@@ -88,7 +88,7 @@ Twitter, Facebookからはユーザ名，アイコンを取得します。
 http://sakumon.jp/app/LK_API/users.json
 
 ### Resource Information
-- Method: POST	
+- Method: POST
 - Contoroller#action: users#add
 - Requires Authentication: No
 
@@ -178,14 +178,14 @@ TwitterやFacebookからもログイン可能です．
 logins.json
 
 ### Resource Information
-- Method: POST	
+- Method: POST
 - Contoroller#action: logins#add
 - Requires Authentication: No
 
 ### Request Parameter
 
 |フィールド|説明|型|必須|
-|:------------:|:----------|:---|:----------:|	
+|:------------:|:----------|:---|:----------:|
 |username|ログイン用ユーザ名|text|◯（emailといずれか）|
 |email|ログイン用メールアドレス|text|◯（usernameといずれか）|
 |password|パスワード|text|◯(SNS認証以外は必須)|
@@ -807,7 +807,7 @@ post_data:kentei_id=1&user_id=10
                     "created": "2015-02-07 21:56:57"
                 }
             },
-            
+
             ・
             ・
             ・
@@ -1438,5 +1438,65 @@ post_data:target=1&from_user_id=2&to_action_id=2
             }
         }
     ]
+}
+```
+
+## Index Levels API
+
+### Summary
+ユーザのポイントとレベルを取得するAPI
+
+### Resource URL
+index.json
+
+### Resource Information
+- Method: GET
+- Contoroller#action : Levels#index
+
+|フィールド|説明|型|必須|
+|:------------:|:----------|:---|:----------:|
+|kentei_id|どの検定の問題か(1:もりけんweb,2:iOSapp,3:Androidapp,4:ガンライザー検定,5:たきざわ検定web,6:たきざわ検定app)|int|◯|
+|user_id|ユーザID|int|◯|
+
+### Responce Parameter
+
+|フィールド|説明|型|
+|:------------:|:----------|:---|
+|user_id|ユーザID|int|
+|use_level|利用レベル|int|
+|know_level|知識レベル|int|
+|use_point|利用ポイント|int|
+|login_point|ログインポイント|int|
+|answer_point|解答ポイント|int|
+|make_point|作問ポイント|int|
+|evaluate_point|評価ポイント|int|
+
+
+### Example Request(success)
+http://sakumon.jp/LK_API/levels/index.json<br />
+post_data:kentei_id=1&user_id=1
+
+### Example Responce
+```
+{
+    "meta": {
+        "method": "GET",
+        "url": "/LK_API/levels/index.json"
+    },
+    "response": {
+        "code": 200,
+        "message": "リクエストの作成に成功しました。",
+        "Levels": {
+            "id": "1",
+            "user_id": "1",
+            "use_level": "1",
+            "know_level": "1"
+            "use_point": "1",
+            "login_point": "1",
+            "answer_point": "1",
+            "make_point": "1",
+            "evaluate_point": "1"
+        }
+    }
 }
 ```
