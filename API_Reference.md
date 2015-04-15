@@ -267,7 +267,7 @@ Problem.json
 
 ### Resource Information
 - Method: GET
-- Contoroller#action: Problems#show
+- Contoroller#action: Problems#index
 - Requires Authentication: No
 
 ### Request Parameter
@@ -322,7 +322,7 @@ Problem.json
 |created|問題作成日|datetime|
 
 ### Example Request（1問取得）
-http://sakumon.jp/LK_API/problems/add.json<br />
+http://sakumon.jp/LK_API/problems/index.json<br />
 post_data:kentei_id=1&employ=2012&grade=3&category_id=1&item=1
 
 ### Example Responce（1問取得）
@@ -376,7 +376,7 @@ post_data:kentei_id=1&employ=2012&grade=3&category_id=1&item=1
 ```
 
 ###Example Request（5問取得）
-http://sakumon.jp/LK_API/problems/add.json<br />
+http://sakumon.jp/LK_API/problems/index.json<br />
 post_data:kentei_id=1&employ=2012&grade=3&category_id=1&item=5
 
 ### Example Responce（5問取得）
@@ -469,7 +469,7 @@ post_data:kentei_id=1&employ=2012&grade=3&category_id=1&item=5
 ```
 
 ###Example Request(100問取得)
-http://sakumon.jp/LK_API/problems/add.json<br />
+http://sakumon.jp/LK_API/problems/index.json<br />
 post_data:kentei_id=1&employ=2012&grade=3&item=100
 
 ### Example Responce(100問取得)
