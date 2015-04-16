@@ -322,7 +322,7 @@ http://sakumon.jp/app/LK_API/problems/index.json
 |created|問題作成日|datetime|
 
 ### Example Request（1問取得）
-http://sakumon.jp/LK_API/problems/index.json<br />
+http://sakumon.jp/app/LK_API/problems/index.json<br />
 post_data:kentei_id=1&employ=2012&grade=3&category_id=1&item=1
 
 ### Example Responce（1問取得）
@@ -376,7 +376,7 @@ post_data:kentei_id=1&employ=2012&grade=3&category_id=1&item=1
 ```
 
 ###Example Request（5問取得）
-http://sakumon.jp/LK_API/problems/index.json<br />
+http://sakumon.jp/app/LK_API/problems/index.json<br />
 post_data:kentei_id=1&employ=2012&grade=3&category_id=1&item=5
 
 ### Example Responce（5問取得）
@@ -469,7 +469,7 @@ post_data:kentei_id=1&employ=2012&grade=3&category_id=1&item=5
 ```
 
 ###Example Request(100問取得)
-http://sakumon.jp/LK_API/problems/index.json<br />
+http://sakumon.jp/app/LK_API/problems/index.json<br />
 post_data:kentei_id=1&employ=2012&grade=3&item=100
 
 ### Example Responce(100問取得)
@@ -625,7 +625,7 @@ http://sakumon.jp/app/LK_API/problems/add.json
 |subcategory_id|サブカテゴリid|int|
 
 ### Example Request（選択形式）
-http://sakumon.jp/LK_API/problems/add.json<br />
+http://sakumon.jp/app/LK_API/problems/add.json<br />
 post_data:kentei_id=1&user_id=1&type=1&grade=1&number=1&sentence=テスト問題文&right_answer=テスト答え&wrong_answer1=テスト誤答&wrong_answer2=テスト誤答2&wrong_answer3=テスト誤答3&description=テスト解答&public_flag&category_id=1&subcategory_id=1
 
 ### Example Responce
@@ -659,7 +659,7 @@ post_data:kentei_id=1&user_id=1&type=1&grade=1&number=1&sentence=テスト問題
 ```
 
 ### Example Request（一問一答形式）
-http://sakumon.jp/LK_API/problems/add.json<br />
+http://sakumon.jp/app/LK_API/problems/add.json<br />
 post_data:kentei_id=1&user_id=1&type=2&grade=1&number=1&sentence=テスト問題文&right_answer=テスト一問一答答え&description=テスト解答&public_flag&category_id=1&subcategory_id=1
 
 ### Example Responce
@@ -724,7 +724,7 @@ http://sakumon.jp/app/LK_API/answerHistories/add.json
 
 
 ### Example Request(success)
-http://moriken_test.com/LK_API/answerHistories/add.json<br />
+http://sakumon.jp/app/LK_API/answerHistories/add.json<br />
 post_data:kentei_id=1&user_id=10&problem_id=5&answer_flag=1
 
 ### Example Responce
@@ -782,7 +782,7 @@ http://sakumon.jp/app/LK_API/answerHistories/index.json
 
 
 ### Example Request(success)
-http://sakumon.jp/LK_API/answerHistories/index.json<br />
+http://sakumon.jp/app/LK_API/answerHistories/index.json<br />
 post_data:kentei_id=1&user_id=10
 
 ### Example Responce
@@ -861,7 +861,7 @@ http://sakumon.jp/app/LK_API/evaluateComments/add.json
 
 
 ### Example Request(success)
-http://sakumon.jp/LK_API/evaluateComments/add.json<br />
+http://sakumon.jp/app/LK_API/evaluateComments/add.json<br />
 post_data:evaluate_item_id=1&problem_id=1&user_id=1&evaluate_comment=いのうえ
 
 ### Example Responce
@@ -918,7 +918,7 @@ http://sakumon.jp/app/LK_API/evaluateComments/index.json
 
 
 ### Example Request(success)
-http://sakumon.jp/LK_API/evaluateComments/index.json<br />
+http://sakumon.jp/app/LK_API/evaluateComments/index.json<br />
 post_data:problem_id=1&user_id=1
 
 ### Example Responce
@@ -996,7 +996,7 @@ http://sakumon.jp/app/LK_API/evaluateComments/edit.json
 |confirm_flag|作問者の確認フラグ(1:未確認,2:容認,3:否認)|int|
 
 ### Example Request(success)
-http://sakumon.jp/LK_API/evaluateComments/edit/1.json<br />
+http://sakumon.jp/app/LK_API/evaluateComments/edit/1.json<br />
 post_data:id=1(idは↑のurlのパラメーターとして送る),confirm_comment=testComment&confirm_flg=2
 
 ### Example Responce
@@ -1042,7 +1042,7 @@ http://sakumon.jp/app/LK_API/evaluateItems/index.json
 |name|評価項目名|text|
 
 ### Example Request(success)
-http://sakumon.jp/LK_API/evaluateItems/index.json<br />
+http://sakumon.jp/app/LK_API/evaluateItems/index.json<br />
 post_data:kentei_id=1
 
 ### Example Responce
@@ -1108,7 +1108,7 @@ http://sakumon.jp/app/LK_API/categories/add.json
 |name|カテゴリー名|text|
 
 ### Example Request(success)
-http://sakumon.jp/LK_API/categories/add.json<br />
+http://sakumon.jp/app/LK_API/categories/add.json<br />
 post_data:kentei_id=1&name=盛岡の文化
 
 ### Example Responce
@@ -1158,7 +1158,7 @@ http://sakumon.jp/app/LK_API/categories/index.json
 |name|カテゴリー名|text|
 
 ### Example Request(success)
-http://sakumon.jp/LK_API/categories/index.json<br />
+http://sakumon.jp/app/LK_API/categories/index.json<br />
 post_data:kentei_id=1
 
 ### Example Responce
@@ -1226,7 +1226,7 @@ http://sakumon.jp/app/LK_API/subCategories/add.json
 |name|カテゴリー名|text|
 
 ### Example Request(success)
-http://sakumon.jp/LK_API/subCategories/add.json<br />
+http://sakumon.jp/app/LK_API/subCategories/add.json<br />
 post_data:category_id=2&kentei_id=3&name=盛岡の食文化
 
 ### Example Responce
@@ -1276,7 +1276,7 @@ http://sakumon.jp/app/LK_API/tags/add.json
 |name|タグ名|text|
 
 ### Example Request(success)
-http://sakumon.jp/LK_API/tags/add.json<br />
+http://sakumon.jp/app/LK_API/tags/add.json<br />
 post_data:kentei_id=1&name=石川啄木
 
 ### Example Responce
@@ -1329,7 +1329,7 @@ http://sakumon.jp/app/LK_API/comments/add.json
 |comment|コメント内容|text|
 
 ### Example Request(success)
-http://sakumon.jp/LK_API/comments/add.json<br />
+http://sakumon.jp/app/LK_API/comments/add.json<br />
 post_data:target=2&from_user_id=1&to_action_id=2&comment=テストコメント
 
 ### Example Responce
@@ -1395,7 +1395,7 @@ http://sakumon.jp/app/LK_API/comments/index.json
 |image|ユーザアイコン画像|text|
 
 ### Example Request(success)
-http://sakumon.jp/LK_API/comments/index.json<br />
+http://sakumon.jp/app/LK_API/comments/index.json<br />
 post_data:target=1&from_user_id=2&to_action_id=2
 
 ### Example Responce
@@ -1472,7 +1472,7 @@ http://sakumon.jp/app/LK_API/levels/index.json
 
 
 ### Example Request(success)
-http://sakumon.jp/LK_API/levels/index.json<br />
+http://sakumon.jp/app/LK_API/levels/index.json<br />
 post_data:user_id=1
 
 ### Example Responce
