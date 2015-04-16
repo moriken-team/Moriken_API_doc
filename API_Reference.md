@@ -1455,7 +1455,6 @@ index.json
 
 |フィールド|説明|型|必須|
 |:------------:|:----------|:---|:----------:|
-|kentei_id|どの検定の問題か(1:もりけんweb,2:iOSapp,3:Androidapp,4:ガンライザー検定,5:たきざわ検定web,6:たきざわ検定app)|int|◯|
 |user_id|ユーザID|int|◯|
 
 ### Responce Parameter
@@ -1474,7 +1473,7 @@ index.json
 
 ### Example Request(success)
 http://sakumon.jp/LK_API/levels/index.json<br />
-post_data:kentei_id=1&user_id=1
+post_data:user_id=1
 
 ### Example Responce
 ```
@@ -1486,7 +1485,7 @@ post_data:kentei_id=1&user_id=1
     "response": {
         "code": 200,
         "message": "リクエストの作成に成功しました。",
-        "Levels": {
+        "Level": {
             "id": "1",
             "user_id": "1",
             "use_level": "1",
