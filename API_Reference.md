@@ -263,7 +263,7 @@ array(
 - 一度に100問以上の問題を取得することは出来ません。
 
 ### Resource URL
-Problem.json
+http://sakumon.jp/app/LK_API/problems/index.json
 
 ### Resource Information
 - Method: GET
@@ -567,7 +567,7 @@ post_data:kentei_id=1&employ=2012&grade=3&item=100
 問題を作成するAPIです。
 
 ### Resource URL
-add.json
+http://sakumon.jp/app/LK_API/problems/add.json
 
 ### Resource Information
 - Method: POST
@@ -695,7 +695,7 @@ post_data:kentei_id=1&user_id=1&type=2&grade=1&number=1&sentence=テスト問題
 問題解答結果を記録(answer_historisへの記録)をするAPI
 
 ### Resource URL
-add.json
+http://sakumon.jp/app/LK_API/answerHistories/add.json
 
 ### Resource Information
 - Method: POST
@@ -754,7 +754,7 @@ post_data:kentei_id=1&user_id=10&problem_id=5&answer_flag=1
 検定,ユーザー,正解フラグを抽出条件として実行する
 
 ### Resource URL
-index.json
+http://sakumon.jp/app/LK_API/answerHistories/index.json
 
 ### Resource Information
 - Method: GET
@@ -834,7 +834,7 @@ post_data:kentei_id=1&user_id=10
 問題の評価内容を登録するAPI
 
 ### Resource URL
-add.json
+http://sakumon.jp/app/LK_API/evaluateComments/add.json
 
 ### Resource Information
 - Method: POST
@@ -890,7 +890,7 @@ post_data:evaluate_item_id=1&problem_id=1&user_id=1&evaluate_comment=いのう�
 問題の評価結果を取得するAPI
 
 ### Resource URL
-index.json
+http://sakumon.jp/app/LK_API/evaluateComments/index.json
 
 ### Resource Information
 - Method: GET
@@ -973,7 +973,7 @@ post_data:problem_id=1&user_id=1
 評価者が評価した内容を作問者が確認(容認or否認)した結果を更新する
 
 ### Resource URL
-edit.json
+http://sakumon.jp/app/LK_API/evaluateComments/edit.json
 
 ### Resource Information
 - Method: PUT
@@ -1021,7 +1021,7 @@ post_data:id=1(idは↑のurlのパラメーターとして送る),confirm_comme
 対象検定の評価項目を取得するAPI<br />
 
 ### Resource URL
-index.json
+http://sakumon.jp/app/LK_API/evaluateItems/index.json
 
 ### Resource Information
 - Method: GET
@@ -1086,7 +1086,7 @@ post_data:kentei_id=1
 カテゴリーを追加するAPI<br />
 
 ### Resource URL
-add.json
+http://sakumon.jp/app/LK_API/categories/add.json
 
 ### Resource Information
 - Method: POST
@@ -1136,7 +1136,7 @@ post_data:kentei_id=1&name=盛岡の文化
 対象検定のサブカテゴリも同時に抽出する
 
 ### Resource URL
-index.json
+http://sakumon.jp/app/LK_API/categories/index.json
 
 ### Resource Information
 - Method: GET
@@ -1202,7 +1202,7 @@ post_data:kentei_id=1
 サブカテゴリーを追加するAPI<br />
 
 ### Resource URL
-add.json
+http://sakumon.jp/app/LK_API/subCategories/add.json
 
 ### Resource Information
 - Method: POST
@@ -1254,7 +1254,7 @@ post_data:category_id=2&kentei_id=3&name=盛岡の食文化
 タグを追加するAPI<br />
 
 ### Resource URL
-add.json
+http://sakumon.jp/app/LK_API/tags/add.json
 
 ### Resource Information
 - Method: POST
@@ -1303,7 +1303,7 @@ post_data:kentei_id=1&name=石川啄木
 コメントを追加するAPI<br />
 
 ### Resource URL
-add.json
+http://sakumon.jp/app/LK_API/comments/add.json
 
 ### Resource Information
 - Method: POST
@@ -1358,7 +1358,7 @@ post_data:target=2&from_user_id=1&to_action_id=2&comment=テストコメント
 コメントを取得するAPI<br />
 
 ### Resource URL
-index.json
+http://sakumon.jp/app/LK_API/comments/index.json
 
 ### Resource Information
 - Method: GET
@@ -1447,7 +1447,7 @@ post_data:target=1&from_user_id=2&to_action_id=2
 ユーザのポイントとレベルを取得するAPI
 
 ### Resource URL
-index.json
+http://sakumon.jp/app/LK_API/levels/index.json
 
 ### Resource Information
 - Method: GET
