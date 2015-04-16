@@ -1461,6 +1461,8 @@ index.json
 
 |フィールド|説明|型|
 |:------------:|:----------|:---|
+|code|APIの処理結果ステータスコード|int|
+|message|APIの処理結果メッセージ|text|
 |user_id|ユーザID|int|
 |use_level|利用レベル|int|
 |know_level|知識レベル|int|
@@ -1469,7 +1471,6 @@ index.json
 |answer_point|解答ポイント|int|
 |make_point|作問ポイント|int|
 |evaluate_point|評価ポイント|int|
-
 
 ### Example Request(success)
 http://sakumon.jp/LK_API/levels/index.json<br />
@@ -1495,6 +1496,65 @@ post_data:user_id=1
             "answer_point": "1",
             "make_point": "1",
             "evaluate_point": "1"
+        }
+    }
+}
+```
+
+## Edit Levels API
+
+### Summary
+ユーザのポイントとレベルを更新するAPI
+
+### Resource URL
+edit.json
+
+### Resource Information
+- Method: PUT
+- Contoroller#action : Levels#edit
+
+|フィールド|説明|型|必須|
+|:------------:|:----------|:---|:----------:|
+|user_id|ユーザID|int|◯|
+|use_level|利用レベル|int||
+|know_level|知識レベル|int||
+|use_point|利用ポイント|int||
+|login_point|ログインポイント|int||
+|answer_point|解答ポイント|int||
+|make_point|作問ポイント|int||
+|evaluate_point|評価ポイント|int||
+
+### Responce Parameter
+
+|フィールド|説明|型|
+|:------------:|:----------|:---|
+|code|APIの処理結果ステータスコード|int|
+|message|APIの処理結果メッセージ|text|  
+|user_id|ユーザID|int|
+|use_level|利用レベル|int|
+|know_level|知識レベル|int|
+|use_point|利用ポイント|int|
+|login_point|ログインポイント|int|
+|answer_point|解答ポイント|int|
+|make_point|作問ポイント|int|
+|evaluate_point|評価ポイント|int|
+
+### Example Request(success)
+http://sakumon.jp/LK_API/levels/edit/1.json<br />
+post_data:id=1(idは↑のurlのパラメーターとして送る),user_id=1&use_level=2
+
+### Example Responce
+```
+{
+    "meta": {
+        "method": "PUT",
+        "url": "/MorikenAPI/LK_API/levels/edit/1.json"
+    },
+    "response": {
+        "code": 201,
+        "message": "作成に成功しました。",
+        "user_id": "1",
+        "use_level": "2"
         }
     }
 }
