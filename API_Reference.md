@@ -906,6 +906,7 @@ http://sakumon.jp/app/LK_API/evaluateComments/index.json
 
 |フィールド|説明|型|
 |:------------:|:----------|:---|
+|EvaluateComment|||
 |code|APIの処理結果ステータスコード|int|
 |message|APIの処理結果メッセージ|text|
 |evaluate_item_id|評価対象の項目ID|int|
@@ -916,6 +917,32 @@ http://sakumon.jp/app/LK_API/evaluateComments/index.json
 |confirm_flag|作問者の確認フラグ(1:未確認,2:容認,3:否認)|int|
 |created|評価登録日|datetime|
 
+|フィールド|説明|型|
+|:------------:|:----------|:---|
+|problem|||
+|id|問題ID|int|
+|kentei_id|どの検定の問題か(1:もりけんweb,2:iOSapp,3:Androidapp,4:ガンライザー検定,5:たきざわ検定web,6:たきざわ検定app)|int|
+|user_id|問題作成者ID|int|
+|type|問題形式（1.四択問題 2.記述式問題）|int|
+|grade|過去問採用級|int|
+|number|過去問設問番号|int|
+|sentence|問題文|text|
+|right_answer|正解選択肢or正解文字列|text|
+|wrong_answer1|誤答選択肢1|text|
+|wrong_answer2|誤答選択肢2|text|
+|wrong_answer3|誤答選択肢3|text|
+|description|解説文|text|
+|other_answer|記述式問題の他の正解(カンマ区切り)|text|
+|image|画像パス|text|
+|latitude|経度・緯度情報|float|
+|longitude|経度・緯度情報|float|
+|reference|参考文献|text|
+|spot_id|ガンライザー検定用スポットID|int|
+|public_flag|問題の公開フラグ(非公開=0,公開=1) 過去問は公開,オリジナルは非公開|int|
+|category_id|カテゴリid|int|
+|subcategory_id|サブカテゴリid|int|
+|created|問題作成日|datetime|
+|modified|問題編集日|datetime|
 
 ### Example Request(success)
 http://sakumon.jp/app/LK_API/evaluateComments/index.json<br />
@@ -934,14 +961,40 @@ post_data:problem_id=1&user_id=1
         "EvaluateComments": [
             {
                 "EvaluateComment": {
-                    "id": "1",
+                    "id": "9",
                     "evaluate_item_id": "1",
                     "problem_id": "1",
-                    "user_id": "1"
-                    "evaluate_comment": "test!",
+                    "user_id": "1",
+                    "evaluate_comment": "inoue-",
                     "confirm_comment": "",
                     "confirm_flag": "1",
-                    "created": "2015-03-16 23:57:16",
+                    "created": "2015-03-17 17:28:29"
+                },
+                "Problem": {
+                    "id": "1",
+                    "kentei_id": "1",
+                    "user_id": "7",
+                    "type": "1",
+                    "grade": "0",
+                    "number": "0",
+                    "sentence": "テスト問題",
+                    "right_answer": "テスト正解",
+                    "wrong_answer1": "テスト誤答1",
+                    "wrong_answer2": "テスト誤答2",
+                    "wrong_answer3": "テスト誤答3",
+                    "description": "",
+                    "other_answer": "",
+                    "image": "",
+                    "latitude": "0",
+                    "longitude": "0",
+                    "reference": "",
+                    "spot_id": "0",
+                    "public_flag": "1",
+                    "category_id": "1",
+                    "subcategory_id": "1",
+                    "employ": "0",
+                    "created": "2007-09-01 11:57:00",
+                    "modified": "0000-00-00 00:00:00"
                 }
             },
 
@@ -954,11 +1007,37 @@ post_data:problem_id=1&user_id=1
                     "id": "1",
                     "evaluate_item_id": "1",
                     "problem_id": "1",
-                    "user_id": "1"
+                    "user_id": "1",
                     "evaluate_comment": "test!2",
                     "confirm_comment": "",
                     "confirm_flag": "1",
-                    "created": "2015-03-17 23:57:16",
+                    "created": "2015-03-17 23:57:16"
+                },
+                "Problem": {
+                    "id": "1",
+                    "kentei_id": "1",
+                    "user_id": "7",
+                    "type": "1",
+                    "grade": "0",
+                    "number": "0",
+                    "sentence": "テスト問題",
+                    "right_answer": "テスト正解",
+                    "wrong_answer1": "テスト誤答1",
+                    "wrong_answer2": "テスト誤答2",
+                    "wrong_answer3": "テスト誤答3",
+                    "description": "",
+                    "other_answer": "",
+                    "image": "",
+                    "latitude": "0",
+                    "longitude": "0",
+                    "reference": "",
+                    "spot_id": "0",
+                    "public_flag": "1",
+                    "category_id": "1",
+                    "subcategory_id": "1",
+                    "employ": "0",
+                    "created": "2007-09-01 11:57:00",
+                    "modified": "0000-00-00 00:00:00"
                 }
             }
         ]
