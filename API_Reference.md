@@ -322,6 +322,17 @@ http://sakumon.jp/app/LK_API/problems/index.json
 |name|カテゴリー名|text|
 |created|問題作成日|datetime|
 
+|フィールド|説明|型|
+|:------------:|:----------|:---|
+|evaluateComments:|||
+|evaluate_item_id|評価対象の項目ID|int|
+|problem_id|評価対象の問題ID|int|
+|user_id|評価ユーザID|int|
+|evaluate_comment|評価コメント(評価者)|text|
+|confirm_comment|確認コメント(作問者)|text|
+|confirm_flag|作問者の確認フラグ(1:未確認,2:容認,3:否認)|int|
+|created|評価登録日|datetime|
+
 ### Example Request（1問取得）
 http://sakumon.jp/app/LK_API/problems/index.json<br />
 post_data:kentei_id=1&employ=2012&grade=3&category_id=1&item=1
@@ -952,7 +963,7 @@ http://sakumon.jp/app/LK_API/evaluateComments/index.json
 
 |フィールド|説明|型|
 |:------------:|:----------|:---|
-|EvaluateComment|||
+|EvaluateComment:|||
 |code|APIの処理結果ステータスコード|int|
 |message|APIの処理結果メッセージ|text|
 |evaluate_item_id|評価対象の項目ID|int|
@@ -965,7 +976,7 @@ http://sakumon.jp/app/LK_API/evaluateComments/index.json
 
 |フィールド|説明|型|
 |:------------:|:----------|:---|
-|problem|||
+|problem:|||
 |id|問題ID|int|
 |kentei_id|どの検定の問題か(1:もりけんweb,2:iOSapp,3:Androidapp,4:ガンライザー検定,5:たきざわ検定web,6:たきざわ検定app)|int|
 |user_id|問題作成者ID|int|
