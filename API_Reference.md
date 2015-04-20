@@ -368,7 +368,22 @@ post_data:kentei_id=1&employ=2012&grade=3&category_id=1&item=1
                     "kentei_id": "1",
                     "name": "盛岡の文化",
                     "created": "2015-02-22 17:02:46"
-                }
+                },
+                "EvaluateComment": [
+                    {
+                        "id": "10",
+                        "evaluate_item_id": "1",
+                        "problem_id": "1839",
+                        "user_id": "1",
+                        "evaluate_comment": "test",
+                        "confirm_comment": "",
+                        "confirm_flag": "1",
+                        "created": "2015-04-20 17:58:37"
+                    }
+                    ・
+                    ・
+                    ・
+                ]
             }
         ]
     }
@@ -422,7 +437,22 @@ post_data:kentei_id=1&employ=2012&grade=3&category_id=1&item=5
                     "kentei_id": "1",
                     "name": "盛岡の文化",
                     "created": "2015-02-22 17:02:46"
-                }
+                },
+                "EvaluateComment": [
+                    {
+                        "id": "10",
+                        "evaluate_item_id": "1",
+                        "problem_id": "1839",
+                        "user_id": "1",
+                        "evaluate_comment": "test",
+                        "confirm_comment": "",
+                        "confirm_flag": "1",
+                        "created": "2015-04-20 17:58:37"
+                    }
+                    ・
+                    ・
+                    ・
+                ]
             },
 
         ・
@@ -461,7 +491,22 @@ post_data:kentei_id=1&employ=2012&grade=3&category_id=1&item=5
                     "kentei_id": "1",
                     "name": "盛岡の文化",
                     "created": "2015-02-22 17:02:46"
-                }
+                },
+                "EvaluateComment": [
+                    {
+                        "id": "10",
+                        "evaluate_item_id": "1",
+                        "problem_id": "1839",
+                        "user_id": "1",
+                        "evaluate_comment": "test",
+                        "confirm_comment": "",
+                        "confirm_flag": "1",
+                        "created": "2015-04-20 17:58:37"
+                    }
+                    ・
+                    ・
+                    ・
+                ]
             }
         ]
     }
