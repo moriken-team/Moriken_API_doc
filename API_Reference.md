@@ -277,7 +277,7 @@ http://sakumon.jp/app/LK_API/problems/index.json
 |kentei_id|どの検定の回答履歴か(1:もりけんweb,2:iOSapp,3:Androidapp,4:ガンライザー検定,5:たきざわ検定web,6:たきざわ検定app)|int|◯|
 |employ|年度(0:オリジナル問題,0以外:過去問対象西暦)|int|◯|
 |public_flag|問題の公開フラグ(非公開:0,公開:1)|int|オリジナル問題抽出時は常に◯|
-|category_id|カテゴリID|int|級かカテゴリIDどちらか一つが◯<br />(過去問抽出時)<br />オリジナル問題抽出時は常に◯|
+|category_id|カテゴリID|int|級かカテゴリIDどちらか一つが◯<br />(過去問抽出時)
 |grade|級|int|級かカテゴリIDどちらか一つが◯<br />(過去問抽出時のみ)|
 |item|問題取得数|int|◯|
 
