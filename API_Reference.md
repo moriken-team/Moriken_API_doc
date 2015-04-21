@@ -618,7 +618,67 @@ post_data:kentei_id=1&employ=2012&grade=3&item=100
 }
 ```
 
-## Making Question API
+## Edit Problem API
+
+### Summary
+問題を更新するAPIです。
+
+### Resource URL
+http://sakumon.jp/app/LK_API/problems/edit.json
+
+### Resource Information
+- Method: PUT
+- Contoroller#action: Problems#edit
+- Requires Authentication: No
+
+### Request Parameter
+
+|フィールド|説明|型|必須|
+|:------------:|:----------|:---|:----------:|
+|problem_id|問題ID|int|◯|
+|sentence|問題文|text||
+|right_answer|正解選択肢or正解文字列|text||
+|wrong_answer1|誤答選択肢1|text||
+|wrong_answer2|誤答選択肢2|text||
+|wrong_answer3|誤答選択肢3|text||
+|description|解説文|text||
+|other_answer|記述式問題の他の正解(カンマ区切り)|text||
+|image|画像パス|text||
+|latitude|経度・緯度情報|float||
+|longitude|経度・緯度情報|float||
+|reference|参考文献|text||
+|public_flag|問題の公開フラグ(非公開:0,公開:1)|int||
+
+### Responce Parameter
+
+|フィールド|説明|型|
+|:------------:|:----------|:---|
+|code|APIの処理結果ステータスコード|int|
+|message|APIの処理結果メッセージ|text|
+|problem_id|問題ID|int|
+|sentence|問題文|text|
+|right_answer|正解選択肢or正解文字列|text|
+|wrong_answer1|誤答選択肢1|text|
+|wrong_answer2|誤答選択肢2|text|
+|wrong_answer3|誤答選択肢3|text|
+|description|解説文|text|
+|other_answer|記述式問題の他の正解(カンマ区切り)|text|
+|image|画像パス|text|
+|latitude|経度・緯度情報|float|
+|longitude|経度・緯度情報|float|
+|reference|参考文献|text|
+|public_flag|問題の公開フラグ(非公開:0,公開:1)|int|
+
+### Example Request（選択形式）
+http://sakumon.jp/app/LK_API/problems/edit/1.json<br />
+post_data:problem_id=1(idは↑のurlのパラメーターとして送る)&sentence=テスト問題文修正&description=テスト解答修正&public_flag=1
+
+### Example Responce
+```
+dfd
+```
+
+## Making Problem API
 
 ### Summary
 問題を作成するAPIです。
