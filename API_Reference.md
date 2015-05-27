@@ -77,6 +77,152 @@
 |500（InternalServerError）|サーバエラーです。|
 |503（ServiceUnavailable）|メンテナンス中か、サーバがダウンしています。|
 
+## index User API
+
+### Summary
+ユーザ情報取得APIです。
+ユーザのレコード情報（パスワード以外）に加えて、対象ユーザIDが関連付けされているAnswerHistories,Levels,Problemsも同時に取得する
+
+### Resource URL
+http://sakumon.jp/app/LK_API/users/index.json
+
+### Resource Information
+- Method: GET
+- Contoroller#action: users#index
+- Requires Authentication: No
+
+### Request Parameter
+
+|フィールド|説明|型|必須|
+|:------------:|:----------|:---|:----------:|
+|id|ユーザID|int|◯|
+
+### Responce Parameter
+
+|フィールド|説明|型|
+|:------------:|:----------|:---|
+|code|ステータスコード|int|
+|message|メッセージ|text|
+
+|フィールド|説明|型|
+|:------------:|:----------|:---|
+|User:|||
+|id|ユーザID|int|
+|username|ユーザ名|text|
+|email|メールアドレス|text|
+|image|ファイルパス|text|
+|twitter_id|TwitterのID|int|
+|twitter_access_token|Twitterのアクセストークン|text|
+|twitter_access_token_secret|Twitterのシークレットトークン|text|
+|facebook_id|FacebookのID|int|
+|facebook_access_token|Facebookのアクセストークン|text|
+|token|ユーザのトークン|text|
+|created|ユーザ作成日|datetime|
+|modified|ユーザ編集日|datetime|
+
+|フィールド|説明|型|
+|:------------:|:----------|:---|
+|AnswerHistories:|||
+|code|APIの処理結果ステータスコード|int|
+|code|APIの処理結果ステータスコード|int|
+|message|APIの処理結果メッセージ|text|
+|kentei_id|どの検定の回答履歴か(1:もりけんweb,2:iOSapp,3:Androidapp,4:ガンライザー検定,5:たきざわ検定web,6:たきざわ検定app)|int|
+|user_id|指定した履歴のユーザーID|int|
+|problem_id|回答した問題のID|int|
+|answer_flag|正解したか(1:正解,2:不正解)|int|
+|answer_text|不正解の場合の誤回答テキスト|text|
+|created|履歴登録日|datetime|
+
+|フィールド|説明|型|
+|:------------:|:----------|:---|
+|Levels:|||
+|code|APIの処理結果ステータスコード|int|
+|message|APIの処理結果メッセージ|text|
+|user_id|ユーザID|int|
+|use_level|利用レベル|int|
+|know_level|知識レベル|int|
+|use_point|利用ポイント|int|
+|login_point|ログインポイント|int|
+|answer_point|解答ポイント|int|
+|make_point|作問ポイント|int|
+|evaluate_point|評価ポイント|int|
+
+|フィールド|説明|型|
+|:------------:|:----------|:---|
+|problem:|||
+|id|問題ID|int|
+|kentei_id|どの検定の問題か(1:もりけんweb,2:iOSapp,3:Androidapp,4:ガンライザー検定,5:たきざわ検定web,6:たきざわ検定app)|int|
+|user_id|問題作成者ID|int|
+|type|問題形式（1.四択問題 2.記述式問題）|int|
+|grade|過去問採用級|int|
+|number|過去問設問番号|int|
+|sentence|問題文|text|
+|right_answer|正解選択肢or正解文字列|text|
+|wrong_answer1|誤答選択肢1|text|
+|wrong_answer2|誤答選択肢2|text|
+|wrong_answer3|誤答選択肢3|text|
+|description|解説文|text|
+|other_answer|記述式問題の他の正解(カンマ区切り)|text|
+|image|画像パス|text|
+|latitude|経度・緯度情報|float|
+|longitude|経度・緯度情報|float|
+|reference|参考文献|text|
+|spot_id|ガンライザー検定用スポットID|int|
+|public_flag|問題の公開フラグ(非公開=0,公開=1) 過去問は公開,オリジナルは非公開|int|
+|category_id|カテゴリid|int|
+|subcategory_id|サブカテゴリid|int|
+|created|問題作成日|datetime|
+|modified|問題編集日|datetime|
+
+### Example Request
+http://sakumon.jp/app/LK_API/users/index.json<br>
+post_data:id=1
+```
+{
+    "meta": {
+        "method": "GET",
+        "url": "/LK_API/users/index.json"
+    },
+    "response": {
+        "code": 200,
+        "message": "リクエストに成功しました。"
+        "Users": [
+            {
+                "User": {
+                    "id": "1",
+                    "username": "テストユーザ",
+                    "email": "test@sample.com",
+                    "image": "0",
+                    "twitter_id": "0",
+                    "twitter_access_token": "",
+                    "twitter_access_token_secret": "",
+                    "facebook_id": "0",
+                    "facebook_access_token": "",
+                    "token": null,
+                    "created": "0000-00-00 00:00:00",
+                    "modified": "2011-09-30 19:41:00",
+                },
+                "AnswerHistory": [
+                    ・
+                    ・
+                    ・
+                ],
+                "Level": [
+                    ・
+                    ・
+                    ・
+                ],
+                "Problem": [
+                    ・
+                    ・
+                    ・
+                ]
+            }
+        ],
+    }
+}
+```
+
 ## UserAdd API
 
 ### Summary
