@@ -1961,3 +1961,75 @@ post_data:kentei_id=1&name=滝沢駅&create_user_id=1&latitude=39.799151&longitu
 }
 ```
 
+## Index Spots API
+
+### Summary
+スポット情報を取得するAPI
+
+### Resource URL
+http://sakumon.jp/app/LK_API/spots/index.json
+
+### Resource Information
+- Method: GET
+- Contoroller#action : spots#index
+
+|フィールド|説明|型|必須|
+|:------------:|:----------|:---|:----------:|
+|kentei_id|どの検定の回答履歴か(1:もりけんweb,2:iOSapp,3:Androidapp,4:ガンライザー検定,5:たきざわ検定web,6:たきざわ検定app)|int|◯|
+
+### Responce Parameter
+
+|フィールド|説明|型|
+|:------------:|:----------|:---|
+|code|APIの処理結果ステータスコード|int|
+|message|APIの処理結果メッセージ|text|
+|kentei_id|どの検定の回答履歴か(1:もりけんweb,2:iOSapp,3:Androidapp,4:ガンライザー検定,5:たきざわ検定web,6:たきざわ検定app)|int|
+|name|スポットの名前|text|
+|create_user_id|スポット登録ユーザID|int|
+|latitude|緯度情報|float|
+|longitude|経度情報|float|
+
+### Example Request(success)
+http://sakumon.jp/app/LK_API/spots/index.json<br />
+post_data:kentei_id=6
+
+### Example Responce
+```
+{
+    "meta": {
+        "method": "GET",
+        "url": "/LK_API/spots/index.json"
+    },
+    "response": {
+        "code": 200,
+        "message": "リクエストに成功しました。",
+        "Spots": [
+            {
+                "Spot": {
+                    "id": "1",
+                    "kentei_id": "6",
+                    "name": "滝沢市役所",
+                    "create_user_id": "1",
+                    "latitude": "39.7347",
+                    "longitude": "141.077",
+                    "created": "0000-00-00 00:00:00"
+                }
+            },
+            ・
+            ・
+            ・
+            {
+                "Spot": {
+                    "id": "1",
+                    "kentei_id": "6",
+                    "name": "岩手県立大学",
+                    "create_user_id": "1",
+                    "latitude": "39.7300",
+                    "longitude": "141.100",
+                    "created": "0000-00-00 00:00:00"
+                }
+            },
+        ]
+    }
+}
+```
