@@ -1903,3 +1903,61 @@ post_data:id=1(idは↑のurlのパラメーターとして送る),user_id=1&use
     }
 }
 ```
+
+## Add Spots API
+
+### Summary
+スポットを追加するAPI<br />
+
+### Resource URL
+http://sakumon.jp/app/LK_API/spots/add.json
+
+### Resource Information
+- Method: POST
+- Contoroller#action : Spots#Add
+
+|フィールド|説明|型|必須|
+|:------------:|:----------|:---|:----------:|
+|kentei_id|どの検定の回答履歴か(1:もりけんweb,2:iOSapp,3:Androidapp,4:ガンライザー検定,5:たきざわ検定web,6:たきざわ検定app)|int|◯|
+|name|スポットの名前|text|◯|
+|create_user_id|スポット登録ユーザID|int|◯|
+|latitude|緯度情報|float|◯|
+|longitude|経度情報|float|◯|
+
+### Responce Parameter
+
+|フィールド|説明|型|
+|:------------:|:----------|:---|
+|code|APIの処理結果ステータスコード|int|
+|message|APIの処理結果メッセージ|text|
+|kentei_id|どの検定の回答履歴か(1:もりけんweb,2:iOSapp,3:Androidapp,4:ガンライザー検定,5:たきざわ検定web,6:たきざわ検定app)|int|
+|name|スポットの名前|text|
+|create_user_id|スポット登録ユーザID|int|
+|latitude|緯度情報|float|
+|longitude|経度情報|float|
+
+### Example Request(success)
+http://sakumon.jp/app/LK_API/spots/add.json<br />
+post_data:kentei_id=1&name=滝沢駅&create_user_id=1&latitude=39.799151&longitude=141.149400
+
+### Example Responce
+```
+{
+    "meta": {
+        "method": "POST",
+        "url": "/LK_API/spots/add.json"
+    },
+    "response": {
+        "code": 201,
+        "message": "作成に成功しました。",
+        "Spot": {
+            "kentei_id": "1",
+            "name": "滝沢駅",
+            "create_user_id": "1",
+            "latitude": "39.799150",
+            "longitude": "141.149400"
+        }
+    }
+}
+```
+
