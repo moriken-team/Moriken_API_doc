@@ -164,8 +164,8 @@ http://sakumon.jp/app/LK_API/users/index.json
 |description|解説文|text|
 |other_answer|記述式問題の他の正解(カンマ区切り)|text|
 |image|画像パス|text|
-|latitude|経度・緯度情報|float|
-|longitude|経度・緯度情報|float|
+|latitude|経度・緯度情報|double|
+|longitude|経度・緯度情報|double|
 |reference|参考文献|text|
 |spot_id|ガンライザー検定用スポットID|int|
 |public_flag|問題の公開フラグ(非公開=0,公開=1) 過去問は公開,オリジナルは非公開|int|
@@ -452,8 +452,8 @@ http://sakumon.jp/app/LK_API/problems/index.json
 |description|解説文|text|
 |other_answer|記述式問題の他の正解(カンマ区切り)|text|
 |image|画像パス|text|
-|latitude|経度・緯度情報|float|
-|longitude|経度・緯度情報|float|
+|latitude|経度・緯度情報|double|
+|longitude|経度・緯度情報|double|
 |reference|参考文献|text|
 |spot_id|ガンライザー検定用スポットID|int|
 |public_flag|問題の公開フラグ(非公開=0,公開=1) 過去問は公開,オリジナルは非公開|int|
@@ -792,8 +792,8 @@ http://sakumon.jp/app/LK_API/problems/edit.json
 |description|解説文|text||
 |other_answer|記述式問題の他の正解(カンマ区切り)|text||
 |image|画像パス|text||
-|latitude|経度・緯度情報|float||
-|longitude|経度・緯度情報|float||
+|latitude|経度・緯度情報|double||
+|longitude|経度・緯度情報|double||
 |reference|参考文献|text||
 |public_flag|問題の公開フラグ(非公開:0,公開:1)|int||
 
@@ -812,8 +812,8 @@ http://sakumon.jp/app/LK_API/problems/edit.json
 |description|解説文|text|
 |other_answer|記述式問題の他の正解(カンマ区切り)|text|
 |image|画像パス|text|
-|latitude|経度・緯度情報|float|
-|longitude|経度・緯度情報|float|
+|latitude|経度・緯度情報|double|
+|longitude|経度・緯度情報|double|
 |reference|参考文献|text|
 |public_flag|問題の公開フラグ(非公開:0,公開:1)|int|
 
@@ -856,8 +856,8 @@ http://sakumon.jp/app/LK_API/problems/add.json
 |description|解説文|text|◯|
 |other_answer|記述式問題の他の正解(カンマ区切り)|text||
 |image|画像パス|text||
-|latitude|経度・緯度情報|float||
-|longitude|経度・緯度情報|float||
+|latitude|経度・緯度情報|double||
+|longitude|経度・緯度情報|double||
 |spot_id|ガンライザー検定用スポットID|int||
 |public_flag|問題の公開フラグ(非公開=0,公開=1) 過去問は公開,オリジナルは非公開|int|◯|
 |category_id|カテゴリid|int|◯|
@@ -882,8 +882,8 @@ http://sakumon.jp/app/LK_API/problems/add.json
 |description|解説文|text|
 |other_answer|記述式問題の他の正解(カンマ区切り)|text|
 |image|画像パス|text|
-|latitude|経度・緯度情報|float|
-|longitude|経度・緯度情報|float|
+|latitude|経度・緯度情報|double|
+|longitude|経度・緯度情報|double|
 |spot_id|ガンライザー検定用スポットID|int|
 |public_flag|問題の公開フラグ(非公開=0,公開=1) 過去問は公開,オリジナルは非公開|int|
 |category_id|カテゴリid|int|
@@ -1199,8 +1199,8 @@ http://sakumon.jp/app/LK_API/evaluateComments/index.json
 |description|解説文|text|
 |other_answer|記述式問題の他の正解(カンマ区切り)|text|
 |image|画像パス|text|
-|latitude|経度・緯度情報|float|
-|longitude|経度・緯度情報|float|
+|latitude|経度・緯度情報|double|
+|longitude|経度・緯度情報|double|
 |reference|参考文献|text|
 |spot_id|ガンライザー検定用スポットID|int|
 |public_flag|問題の公開フラグ(非公開=0,公開=1) 過去問は公開,オリジナルは非公開|int|
@@ -1921,8 +1921,8 @@ http://sakumon.jp/app/LK_API/spots/add.json
 |kentei_id|どの検定の回答履歴か(1:もりけんweb,2:iOSapp,3:Androidapp,4:ガンライザー検定,5:たきざわ検定web,6:たきざわ検定app)|int|◯|
 |name|スポットの名前|text|◯|
 |create_user_id|スポット登録ユーザID|int|◯|
-|latitude|緯度情報|float|◯|
-|longitude|経度情報|float|◯|
+|latitude|緯度情報|double|◯|
+|longitude|経度情報|double|◯|
 
 ### Responce Parameter
 
@@ -1933,8 +1933,8 @@ http://sakumon.jp/app/LK_API/spots/add.json
 |kentei_id|どの検定の回答履歴か(1:もりけんweb,2:iOSapp,3:Androidapp,4:ガンライザー検定,5:たきざわ検定web,6:たきざわ検定app)|int|
 |name|スポットの名前|text|
 |create_user_id|スポット登録ユーザID|int|
-|latitude|緯度情報|float|
-|longitude|経度情報|float|
+|latitude|緯度情報|double|
+|longitude|経度情報|double|
 
 ### Example Request(success)
 http://sakumon.jp/app/LK_API/spots/add.json<br />
@@ -1986,8 +1986,8 @@ http://sakumon.jp/app/LK_API/spots/index.json
 |kentei_id|どの検定の回答履歴か(1:もりけんweb,2:iOSapp,3:Androidapp,4:ガンライザー検定,5:たきざわ検定web,6:たきざわ検定app)|int|
 |name|スポットの名前|text|
 |create_user_id|スポット登録ユーザID|int|
-|latitude|緯度情報|float|
-|longitude|経度情報|float|
+|LAtitude|緯度情報|double|
+|longitude|経度情報|double|
 
 ### Example Request(success)
 http://sakumon.jp/app/LK_API/spots/index.json<br />
